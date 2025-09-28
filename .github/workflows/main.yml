@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: Build my project ✨
+    name: Build and deploy my project ✨
     runs-on: ubuntu-latest
     steps:
       # Checkout (without LFS)
@@ -58,3 +58,9 @@ jobs:
         with:
           name: Build
           path: build
+
+      # Deploy
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/WebGL/WebGL
