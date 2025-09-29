@@ -3,8 +3,6 @@ using UnityEngine.Pool;
 
 public class AudioSourcePool : MonoBehaviour
 {
-    public static AudioSourcePool Instance = null;
-
     [SerializeField]
     private AudioSource _audioSourcePrefab = null;
 
@@ -21,8 +19,6 @@ public class AudioSourcePool : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-
         _pool = new ObjectPool<AudioSource>(
             Create,
             OnGet,

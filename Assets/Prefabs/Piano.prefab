@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9185363436256715907, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -342,9 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &184930554065672176 stripped
 GameObject:
@@ -363,9 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &242323635659524013 stripped
 GameObject:
@@ -384,9 +382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &260262940644985958 stripped
 GameObject:
@@ -405,9 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &295517462102553273 stripped
 GameObject:
@@ -426,9 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &480870159768075419 stripped
 GameObject:
@@ -447,9 +442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &557271452891140506 stripped
 GameObject:
@@ -468,9 +462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &620532567554890178 stripped
 GameObject:
@@ -489,9 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &661409584646263343 stripped
 GameObject:
@@ -510,9 +502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &820349493421242483 stripped
 GameObject:
@@ -531,9 +522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &1247297620621056495 stripped
 GameObject:
@@ -552,9 +542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &1265657125636634426 stripped
 GameObject:
@@ -573,9 +562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &1650820503960179547 stripped
 GameObject:
@@ -594,9 +582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &1816275365329415946 stripped
 GameObject:
@@ -615,9 +602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &2022049479482682525 stripped
 GameObject:
@@ -636,9 +622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &2126768200493069884 stripped
 GameObject:
@@ -657,9 +642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &2350058658698457434 stripped
 GameObject:
@@ -678,9 +662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &2463796057241782063 stripped
 GameObject:
@@ -699,9 +682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &2588860895969506397 stripped
 GameObject:
@@ -720,9 +702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &2836799967480672574 stripped
 GameObject:
@@ -741,9 +722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &2915018011574327460 stripped
 GameObject:
@@ -762,9 +742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3002602735440657028 stripped
 GameObject:
@@ -783,9 +762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3059741244913058011 stripped
 GameObject:
@@ -804,9 +782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3062098748269425573 stripped
 GameObject:
@@ -825,9 +802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3260358992792772258 stripped
 GameObject:
@@ -846,9 +822,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3361553324274928415 stripped
 GameObject:
@@ -867,9 +842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3503244101016528524 stripped
 GameObject:
@@ -888,9 +862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3695369865152808051 stripped
 GameObject:
@@ -909,9 +882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3724261623067144040 stripped
 GameObject:
@@ -930,9 +902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3730500475017546435 stripped
 GameObject:
@@ -951,9 +922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3822164674895830324 stripped
 GameObject:
@@ -972,9 +942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &3871004338204259065 stripped
 GameObject:
@@ -993,9 +962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &4162159309738848221 stripped
 GameObject:
@@ -1014,9 +982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &4460173010350735094 stripped
 GameObject:
@@ -1035,9 +1002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &4566283212789900240 stripped
 GameObject:
@@ -1056,9 +1022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &4785497479601161410 stripped
 GameObject:
@@ -1077,9 +1042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5012304495369873964 stripped
 GameObject:
@@ -1098,9 +1062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5071303048834385898 stripped
 GameObject:
@@ -1119,9 +1082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5265913941331270840 stripped
 GameObject:
@@ -1140,9 +1102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5351405575947703997 stripped
 GameObject:
@@ -1161,9 +1122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5359881712376123387 stripped
 GameObject:
@@ -1182,9 +1142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5484568188937889481 stripped
 GameObject:
@@ -1203,9 +1162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5585796103424747357 stripped
 GameObject:
@@ -1224,9 +1182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5633747797504348619 stripped
 GameObject:
@@ -1245,9 +1202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5644525813931843746 stripped
 GameObject:
@@ -1266,9 +1222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5847327231456708055 stripped
 GameObject:
@@ -1287,9 +1242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5939600354682809821 stripped
 GameObject:
@@ -1308,9 +1262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &5977123243470166682 stripped
 GameObject:
@@ -1329,9 +1282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6091770340620740112 stripped
 GameObject:
@@ -1350,9 +1302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6112773554951948825 stripped
 GameObject:
@@ -1371,9 +1322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6114701839803945627 stripped
 GameObject:
@@ -1392,9 +1342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6248718061751615712 stripped
 GameObject:
@@ -1413,9 +1362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6487588311632784254 stripped
 GameObject:
@@ -1434,9 +1382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6556011534140734695 stripped
 GameObject:
@@ -1455,9 +1402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6561469777012203115 stripped
 GameObject:
@@ -1476,9 +1422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6581986206531123397 stripped
 GameObject:
@@ -1497,9 +1442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6658520991211777059 stripped
 GameObject:
@@ -1518,9 +1462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6788301058972707009 stripped
 GameObject:
@@ -1539,9 +1482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6798878603964870236 stripped
 GameObject:
@@ -1560,9 +1502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &6801670219256948490 stripped
 GameObject:
@@ -1581,9 +1522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7088206177369931347 stripped
 GameObject:
@@ -1602,9 +1542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7246517401139901486 stripped
 GameObject:
@@ -1623,9 +1562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7307181450293925274 stripped
 GameObject:
@@ -1644,9 +1582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7354383460911038460 stripped
 GameObject:
@@ -1665,9 +1602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7411580482805627499 stripped
 GameObject:
@@ -1686,9 +1622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7658664803103962672 stripped
 GameObject:
@@ -1707,9 +1642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7663579762445994521 stripped
 GameObject:
@@ -1728,9 +1662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7680875980945844279 stripped
 GameObject:
@@ -1749,9 +1682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7700053824598154399 stripped
 GameObject:
@@ -1770,9 +1702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7705162788306584760 stripped
 GameObject:
@@ -1791,9 +1722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7810088601595039215 stripped
 GameObject:
@@ -1812,9 +1742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7867532942040831682 stripped
 GameObject:
@@ -1833,9 +1762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &7977660737070507291 stripped
 GameObject:
@@ -1854,9 +1782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8071304639267436589 stripped
 GameObject:
@@ -1875,9 +1802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8118365967779469881 stripped
 GameObject:
@@ -1896,9 +1822,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8236211003162075732 stripped
 GameObject:
@@ -1917,9 +1842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8351614858182085385 stripped
 GameObject:
@@ -1938,9 +1862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8372661780429244500 stripped
 GameObject:
@@ -1959,9 +1882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8375889309494322570 stripped
 GameObject:
@@ -1980,9 +1902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8489242964134084065 stripped
 GameObject:
@@ -2001,9 +1922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8518236833527362365 stripped
 GameObject:
@@ -2022,9 +1942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8534286339670957433 stripped
 GameObject:
@@ -2043,9 +1962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8537317255541746319 stripped
 GameObject:
@@ -2064,9 +1982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8814448837359203766 stripped
 GameObject:
@@ -2085,9 +2002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8928854002622874108 stripped
 GameObject:
@@ -2106,9 +2022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &8979352020816412504 stripped
 GameObject:
@@ -2127,9 +2042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &9065949654551799335 stripped
 GameObject:
@@ -2148,9 +2062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25
 --- !u!1 &9158485501471238493 stripped
 GameObject:
@@ -2169,7 +2082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9fec9d40f44f23b76373a541174c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PianoKey
-  _midiNoteNumber: 0
   _pressAngle: -5
-  _pressDuration: 0.1
+  _pressDuration: 0.05
   _fadeDuration: 0.25

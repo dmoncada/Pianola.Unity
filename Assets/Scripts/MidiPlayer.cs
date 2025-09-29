@@ -1,147 +1,265 @@
-using System.Collections.Generic;
+using System;
 using System.IO;
-using System.Net.Http;
 using Melanchall.DryWetMidi.Core;
+using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.Multimedia;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class MidiPlayer : MonoBehaviour
 {
-    private readonly Dictionary<int, PianoKey> _noteToKey = new();
-
-    [SerializeField]
-    private GameObject _pianoKeysRoot = null;
-
     [SerializeField]
     private string _midiFileName = "entertainer.mid";
 
     [SerializeField]
-    private float _startDelay = 1.0f;
+    private bool _playOnStart = true;
+
+    [SerializeField]
+    private UnityEvent<float> _onPlayBackSet = new();
+
+    [SerializeField]
+    private UnityEvent<bool> _onPlayPause = new();
+
+    [SerializeField]
+    private UnityEvent<MidiEvent> _onMidiEvent = new();
 
     private Playback _playback = null;
+    private bool _wasPlaying = false;
 
-    private void Awake()
+    public float CurrentTime => _playback?.GetCurrentTimeAsFloat() ?? -1f;
+    public float Duration => _playback?.GetDurationAsFloat() ?? -1f;
+    public bool IsPlaying => _playback?.IsRunning ?? false;
+
+    #region Unity Lifecycle
+    private async Awaitable Start()
     {
-        int noteNumber = 21;
-
-        foreach (var key in _pianoKeysRoot.GetComponentsInChildren<PianoKey>())
+        await Awaitable.WaitForSecondsAsync(1f);
+        var midiFilePath = Path.Combine(Application.streamingAssetsPath, _midiFileName);
+        var midiFile = await LoadMidiAsync(midiFilePath);
+        if (midiFile != null)
         {
-            key.MidiNoteNumber = noteNumber++;
+            _playback = SetupPlayback(midiFile);
+        }
 
-            _noteToKey[key.MidiNoteNumber] = key;
+        if (_playback != null && _playOnStart)
+        {
+            _playback.Start();
         }
     }
 
-    private async Awaitable Start()
+    private void OnEnable()
     {
-        await Awaitable.WaitForSecondsAsync(_startDelay);
-
-        var midiFilePath = Path.Combine(Application.streamingAssetsPath, _midiFileName);
-
-        MidiFile midiFile = null;
-        try
+        if (_wasPlaying)
         {
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            _wasPlaying = false;
+
+            _playback.Start();
+        }
+    }
+
+    private void OnDisable()
+    {
+        _wasPlaying = IsPlaying;
+
+        _playback.Stop();
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            OnEnable();
+        }
+        else
+        {
+            OnDisable();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_playback != null)
+        {
+            TeardownPlayback(_playback);
+
+            _playback = null;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (IsPlaying)
+        {
+            _playback.TickClock();
+        }
+    }
+    #endregion Unity Lifecycle
+
+    public void Toggle()
+    {
+        if (isActiveAndEnabled)
+        {
+            if (IsPlaying)
             {
-                midiFile = await LoadMidiAsync(midiFilePath);
+                _playback.Stop();
             }
             else
             {
-                midiFile = LoadMidi(midiFilePath);
+                _playback.Start();
             }
         }
-        catch (HttpRequestException exception)
+    }
+
+    public void MoveBack(int deltaSeconds)
+    {
+        _playback.MoveBack(deltaSeconds);
+    }
+
+    public void MoveForward(int deltaSeconds)
+    {
+        _playback.MoveForward(deltaSeconds);
+    }
+
+    public void MoveToTime(float playbackTimeSeconds)
+    {
+        _playback.MoveToTime(new MetricTimeSpan((long)(playbackTimeSeconds * 1_000_000)));
+    }
+
+    private async Awaitable<MidiFile> LoadMidiAsync(string filePath)
+    {
+        MidiFile midiFile;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            Debug.LogException(exception);
+            midiFile = await ReadMidiAsync(filePath);
+        }
+        else
+        {
+            midiFile = ReadMidi(filePath);
         }
 
         if (midiFile != null)
         {
-            PlayMidi(midiFile);
+            Debug.Log($"Finished loading MIDI, duration: {midiFile.GetDurationAsFloat():F1} secs.");
         }
+
+        return midiFile;
     }
 
-    private MidiFile LoadMidi(string filePath)
+    private MidiFile ReadMidi(string filePath)
     {
-        return MidiFile.Read(filePath);
+        if (File.Exists(filePath) == false)
+        {
+            Debug.LogError($"File: {filePath} does not exist.", this);
+            return null;
+        }
+
+        using var stream = File.OpenRead(filePath);
+        return ReadMidiFromStream(stream);
     }
 
-    private async Awaitable<MidiFile> LoadMidiAsync(string filePath)
+    private async Awaitable<MidiFile> ReadMidiAsync(string filePath)
     {
         using var request = UnityWebRequest.Get(filePath);
         await request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            throw new HttpRequestException(request.error);
+            Debug.LogError(request.error, this);
+            return null;
         }
 
         var midiData = request.downloadHandler.data;
         using var stream = new MemoryStream(midiData);
-        return MidiFile.Read(stream);
+        return ReadMidiFromStream(stream);
     }
 
-    private void PlayMidi(MidiFile midiFile)
+    private MidiFile ReadMidiFromStream(Stream stream)
+    {
+        try
+        {
+            return MidiFile.Read(stream);
+        }
+        catch (Exception exception) // TODO(dmoncada): handle specific exceptions.
+        {
+            Debug.LogException(exception, this);
+            return null;
+        }
+    }
+
+    private Playback SetupPlayback(MidiFile midiFile)
     {
         var settings = new PlaybackSettings
         {
             ClockSettings = new MidiClockSettings { CreateTickGeneratorCallback = () => null },
         };
 
-        _playback = midiFile.GetPlayback(settings);
-        _playback.EventPlayed += OnEventPlayed;
-        _playback.Start();
+        var playback = midiFile.GetPlayback(settings);
+        playback.Started += OnStartStop;
+        playback.Stopped += OnStartStop;
+        playback.Finished += OnFinished;
+        playback.EventPlayed += OnEventPlayed;
+        _onPlayBackSet?.Invoke(Duration);
+        return playback;
     }
 
-    private void OnDestroy()
+    private void TeardownPlayback(Playback playback)
     {
-        if (_playback == null)
-        {
-            return;
-        }
-
-        if (_playback.IsRunning)
-        {
-            _playback.Stop();
-        }
-
-        _playback.EventPlayed -= OnEventPlayed;
-        _playback.Dispose();
-        _playback = null;
+        playback.Stop();
+        playback.Started -= OnStartStop;
+        playback.Stopped -= OnStartStop;
+        playback.Finished -= OnFinished;
+        playback.EventPlayed -= OnEventPlayed;
+        playback.Dispose();
     }
 
-    private void FixedUpdate()
+    #region Event Handlers
+    private void OnStartStop(object sender, EventArgs args)
     {
-        if (_playback != null && _playback.IsRunning)
-        {
-            _playback.TickClock();
-        }
+        var status = IsPlaying ? "started" : "stopped";
+
+        Debug.Log($"Playback {status}, time: {CurrentTime:F1} secs.");
+
+        _onPlayPause?.Invoke(IsPlaying);
     }
 
-    private void OnEventPlayed(object sender, MidiEventPlayedEventArgs args)
+    private void OnFinished(object sender, EventArgs args)
     {
-        var midiEvent = args.Event;
-        if (midiEvent is NoteOnEvent noteOn)
-        {
-            if (_noteToKey.TryGetValue(noteOn.NoteNumber, out var key))
-            {
-                if (noteOn.Velocity > 0)
-                {
-                    key.Press(noteOn.Channel);
-                }
-                else
-                {
-                    key.Release();
-                }
-            }
-        }
-        if (midiEvent is NoteOffEvent noteOff)
-        {
-            if (_noteToKey.TryGetValue(noteOff.NoteNumber, out var key))
-            {
-                key.Release();
-            }
-        }
+        _onPlayPause?.Invoke(false);
+    }
+
+    private void OnEventPlayed(object _, MidiEventPlayedEventArgs args)
+    {
+        _onMidiEvent?.Invoke(args.Event);
+    }
+    #endregion Event Handlers
+}
+
+public static class Extensions
+{
+    public static float GetDurationAsFloat(this MidiFile midiFile)
+    {
+        return (float)midiFile.GetDuration<MetricTimeSpan>().TotalSeconds;
+    }
+
+    public static float GetDurationAsFloat(this Playback playback)
+    {
+        return (float)playback.GetDuration<MetricTimeSpan>().TotalSeconds;
+    }
+
+    public static float GetCurrentTimeAsFloat(this Playback playback)
+    {
+        return (float)playback.GetCurrentTime<MetricTimeSpan>().TotalSeconds;
+    }
+
+    public static void MoveBack(this Playback playback, int deltaSeconds)
+    {
+        playback.MoveBack(new MetricTimeSpan(0, 0, deltaSeconds));
+    }
+
+    public static void MoveForward(this Playback playback, int deltaSeconds)
+    {
+        playback.MoveForward(new MetricTimeSpan(0, 0, deltaSeconds));
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AudioClipProvider : MonoBehaviour
 {
-    public static AudioClipProvider Instance = null;
-
     [SerializeField]
     private AudioClip[] _clips = new AudioClip[0];
 
@@ -15,8 +13,6 @@ public class AudioClipProvider : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-
         foreach (var clip in _clips)
         {
             _noteClips[clip.name] = clip;
