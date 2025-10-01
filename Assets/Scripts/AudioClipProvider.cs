@@ -1,5 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class AudioClipProvider : MonoBehaviour
@@ -9,8 +10,6 @@ public class AudioClipProvider : MonoBehaviour
 
     private readonly Dictionary<string, AudioClip> _noteClips = new();
 
-    public bool IsLoaded { get; private set; } = false;
-
     private void Awake()
     {
         foreach (var clip in _clips)
@@ -19,19 +18,11 @@ public class AudioClipProvider : MonoBehaviour
         }
     }
 
-    private IEnumerator Start()
+    private async Awaitable Start()
     {
-        foreach (var clip in _clips)
-        {
-            while (clip.loadState == AudioDataLoadState.Loading)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-        }
+        await Task.WhenAll(_clips.Select(clip => Task.FromResult(clip.LoadAudioData())));
 
-        Debug.Log("Finished loading audio clips.");
-
-        IsLoaded = true;
+        Debug.Log("Finished loading audio clips.", this);
     }
 
     public AudioClip Get(string note)

@@ -5,18 +5,11 @@ using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.Multimedia;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Networking;
 
 public class MidiPlayer : MonoBehaviour
 {
     [SerializeField]
-    private string _midiFileName = "entertainer.mid";
-
-    [SerializeField]
-    private bool _playOnStart = true;
-
-    [SerializeField]
-    private UnityEvent<float> _onPlayBackSet = new();
+    private UnityEvent<float> _onPlaybackSet = new();
 
     [SerializeField]
     private UnityEvent<bool> _onPlayPause = new();
@@ -32,29 +25,13 @@ public class MidiPlayer : MonoBehaviour
     public bool IsPlaying => _playback?.IsRunning ?? false;
 
     #region Unity Lifecycle
-    private async Awaitable Start()
-    {
-        await Awaitable.WaitForSecondsAsync(1f);
-        var midiFilePath = Path.Combine(Application.streamingAssetsPath, _midiFileName);
-        var midiFile = await LoadMidiAsync(midiFilePath);
-        if (midiFile != null)
-        {
-            _playback = SetupPlayback(midiFile);
-        }
-
-        if (_playback != null && _playOnStart)
-        {
-            _playback.Start();
-        }
-    }
-
     private void OnEnable()
     {
         if (_wasPlaying)
         {
             _wasPlaying = false;
 
-            _playback.Start();
+            _playback?.Start();
         }
     }
 
@@ -62,7 +39,7 @@ public class MidiPlayer : MonoBehaviour
     {
         _wasPlaying = IsPlaying;
 
-        _playback.Stop();
+        _playback?.Stop();
     }
 
     private void OnApplicationFocus(bool focus)
@@ -96,83 +73,58 @@ public class MidiPlayer : MonoBehaviour
     }
     #endregion Unity Lifecycle
 
+    public bool Initialize(Stream midiStream)
+    {
+        OnDestroy(); // Teardown playback (if any).
+
+        var midiFile = ReadMidiFromStream(midiStream);
+        if (midiFile == null)
+        {
+            Debug.LogError("Failed to initialize MIDI player.", this);
+            return false;
+        }
+
+        Debug.Log($"Finished loading MIDI, duration: {midiFile.GetDurationAsFloat():F1}", this);
+        _playback = SetupPlayback(midiFile);
+        _onPlaybackSet?.Invoke(Duration);
+        return true;
+    }
+
+    public void Play()
+    {
+        _playback?.Start();
+    }
+
+    public void Pause()
+    {
+        _playback?.Stop();
+    }
+
     public void Toggle()
     {
-        if (isActiveAndEnabled)
+        if (IsPlaying)
         {
-            if (IsPlaying)
-            {
-                _playback.Stop();
-            }
-            else
-            {
-                _playback.Start();
-            }
+            _playback.Stop();
+        }
+        else
+        {
+            _playback.Start();
         }
     }
 
     public void MoveBack(int deltaSeconds)
     {
-        _playback.MoveBack(deltaSeconds);
+        _playback?.MoveBack(deltaSeconds);
     }
 
     public void MoveForward(int deltaSeconds)
     {
-        _playback.MoveForward(deltaSeconds);
+        _playback?.MoveForward(deltaSeconds);
     }
 
     public void MoveToTime(float playbackTimeSeconds)
     {
-        _playback.MoveToTime(new MetricTimeSpan((long)(playbackTimeSeconds * 1_000_000)));
-    }
-
-    private async Awaitable<MidiFile> LoadMidiAsync(string filePath)
-    {
-        MidiFile midiFile;
-
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-            midiFile = await ReadMidiAsync(filePath);
-        }
-        else
-        {
-            midiFile = ReadMidi(filePath);
-        }
-
-        if (midiFile != null)
-        {
-            Debug.Log($"Finished loading MIDI, duration: {midiFile.GetDurationAsFloat():F1} secs.");
-        }
-
-        return midiFile;
-    }
-
-    private MidiFile ReadMidi(string filePath)
-    {
-        if (File.Exists(filePath) == false)
-        {
-            Debug.LogError($"File: {filePath} does not exist.", this);
-            return null;
-        }
-
-        using var stream = File.OpenRead(filePath);
-        return ReadMidiFromStream(stream);
-    }
-
-    private async Awaitable<MidiFile> ReadMidiAsync(string filePath)
-    {
-        using var request = UnityWebRequest.Get(filePath);
-        await request.SendWebRequest();
-
-        if (request.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError(request.error, this);
-            return null;
-        }
-
-        var midiData = request.downloadHandler.data;
-        using var stream = new MemoryStream(midiData);
-        return ReadMidiFromStream(stream);
+        _playback?.MoveToTime(playbackTimeSeconds);
     }
 
     private MidiFile ReadMidiFromStream(Stream stream)
@@ -200,7 +152,6 @@ public class MidiPlayer : MonoBehaviour
         playback.Stopped += OnStartStop;
         playback.Finished += OnFinished;
         playback.EventPlayed += OnEventPlayed;
-        _onPlayBackSet?.Invoke(Duration);
         return playback;
     }
 
@@ -219,7 +170,7 @@ public class MidiPlayer : MonoBehaviour
     {
         var status = IsPlaying ? "started" : "stopped";
 
-        Debug.Log($"Playback {status}, time: {CurrentTime:F1} secs.");
+        Debug.Log($"Playback {status}, time: {CurrentTime:F1} secs.", this);
 
         _onPlayPause?.Invoke(IsPlaying);
     }
@@ -261,5 +212,10 @@ public static class Extensions
     public static void MoveForward(this Playback playback, int deltaSeconds)
     {
         playback.MoveForward(new MetricTimeSpan(0, 0, deltaSeconds));
+    }
+
+    public static void MoveToTime(this Playback playback, float timeSeconds)
+    {
+        playback.MoveToTime(new MetricTimeSpan((long)(timeSeconds * 1_000_000)));
     }
 }
