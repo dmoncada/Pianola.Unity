@@ -18,26 +18,11 @@ jobs:
     name: Build 🏰
     runs-on: ubuntu-latest
     steps:
-      # Checkout (without LFS)
+      # Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # Git LFS
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-
-      - name: Restore LFS cache
-        uses: actions/cache@v3
-        id: lfs-cache
         with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
-
-      - name: Git LFS Pull
-        run: |
-          git lfs pull
-          git add .
-          git reset --hard
+          lfs: true
 
       # Cache
       - uses: actions/cache@v3
@@ -68,6 +53,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
       - uses: actions/download-artifact@v4
         with:
           name: Build
