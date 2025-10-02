@@ -3,30 +3,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class AudioClipProvider : MonoBehaviour
+namespace Pianola
 {
-    [SerializeField]
-    private AudioClip[] _clips = new AudioClip[0];
-
-    private readonly Dictionary<string, AudioClip> _noteClips = new();
-
-    private void Awake()
+    public class AudioClipProvider : MonoBehaviour
     {
-        foreach (var clip in _clips)
+        [SerializeField]
+        private AudioClip[] _clips = new AudioClip[0];
+
+        private readonly Dictionary<string, AudioClip> _noteClips = new();
+
+        private void Awake()
         {
-            _noteClips[clip.name] = clip;
+            foreach (var clip in _clips)
+            {
+                _noteClips[clip.name] = clip;
+            }
         }
-    }
 
-    private async Awaitable Start()
-    {
-        await Task.WhenAll(_clips.Select(clip => Task.FromResult(clip.LoadAudioData())));
+        private async Awaitable Start()
+        {
+            await Task.WhenAll(_clips.Select(clip => Task.FromResult(clip.LoadAudioData())));
 
-        Debug.Log("Finished loading audio clips.", this);
-    }
+            Debug.Log("Finished loading audio clips.", this);
+        }
 
-    public AudioClip Get(string note)
-    {
-        return _noteClips[note];
+        public AudioClip Get(string note)
+        {
+            return _noteClips[note];
+        }
     }
 }

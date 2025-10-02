@@ -1,60 +1,63 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class AudioSourcePool : MonoBehaviour
+namespace Pianola
 {
-    [SerializeField]
-    private AudioSource _audioSourcePrefab = null;
-
-    [SerializeField]
-    private bool _checkCollection = true;
-
-    [SerializeField]
-    private int _initialCapacity = 30;
-
-    [SerializeField]
-    private int _maxSize = 100;
-
-    private IObjectPool<AudioSource> _pool = null;
-
-    private void Awake()
+    public class AudioSourcePool : MonoBehaviour
     {
-        _pool = new ObjectPool<AudioSource>(
-            Create,
-            OnGet,
-            OnRelease,
-            (_) => { },
-            _checkCollection,
-            _initialCapacity,
-            _maxSize
-        );
-    }
+        [SerializeField]
+        private AudioSource _audioSourcePrefab = null;
 
-    private AudioSource Create()
-    {
-        return Instantiate(_audioSourcePrefab, transform);
-    }
+        [SerializeField]
+        private bool _checkCollection = true;
 
-    public AudioSource Get()
-    {
-        return _pool.Get();
-    }
+        [SerializeField]
+        private int _initialCapacity = 30;
 
-    public void Release(AudioSource source)
-    {
-        _pool.Release(source);
-    }
+        [SerializeField]
+        private int _maxSize = 100;
 
-    private void OnGet(AudioSource source)
-    {
-        source.gameObject.SetActive(true);
-    }
+        private IObjectPool<AudioSource> _pool = null;
 
-    private void OnRelease(AudioSource source)
-    {
-        source.Stop();
-        source.clip = null;
-        source.volume = 1f;
-        source.gameObject.SetActive(false);
+        private void Awake()
+        {
+            _pool = new ObjectPool<AudioSource>(
+                Create,
+                OnGet,
+                OnRelease,
+                (_) => { },
+                _checkCollection,
+                _initialCapacity,
+                _maxSize
+            );
+        }
+
+        private AudioSource Create()
+        {
+            return Instantiate(_audioSourcePrefab, transform);
+        }
+
+        public AudioSource Get()
+        {
+            return _pool.Get();
+        }
+
+        public void Release(AudioSource source)
+        {
+            _pool.Release(source);
+        }
+
+        private void OnGet(AudioSource source)
+        {
+            source.gameObject.SetActive(true);
+        }
+
+        private void OnRelease(AudioSource source)
+        {
+            source.Stop();
+            source.clip = null;
+            source.volume = 1f;
+            source.gameObject.SetActive(false);
+        }
     }
 }

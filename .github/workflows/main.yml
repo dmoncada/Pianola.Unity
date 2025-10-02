@@ -1,19 +1,50 @@
-name: Build and Deploy
+name: Test, Build, and Deploy
 
 on:
   push:
     branches:
       - main
     paths:
-      - "Assets/**.asmdef"
       - "Assets/**.cs"
       - "Assets/**.dll"
+      - "Assets/**.asmdef"
       - "Assets/**/Plugins/**"
+      - "Tests/**.cs"
+      - "Tests/**.asmdef"
       - "Packages/**"
       - "ProjectSettings/**"
   workflow_dispatch:
 
 jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      - uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Test results
+          path: artifacts
+
   build:
     name: Build 🏰
     runs-on: ubuntu-latest

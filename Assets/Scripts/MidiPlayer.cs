@@ -6,216 +6,219 @@ using Melanchall.DryWetMidi.Multimedia;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MidiPlayer : MonoBehaviour
+namespace Pianola
 {
-    [SerializeField]
-    private UnityEvent<float> _onPlaybackSet = new();
-
-    [SerializeField]
-    private UnityEvent<bool> _onPlayPause = new();
-
-    [SerializeField]
-    private UnityEvent<MidiEvent> _onMidiEvent = new();
-
-    private Playback _playback = null;
-    private bool _wasPlaying = false;
-
-    public float CurrentTime => _playback?.GetCurrentTimeAsFloat() ?? -1f;
-    public float Duration => _playback?.GetDurationAsFloat() ?? -1f;
-    public bool IsPlaying => _playback?.IsRunning ?? false;
-
-    #region Unity Lifecycle
-    private void OnEnable()
+    public class MidiPlayer : MonoBehaviour
     {
-        if (_wasPlaying)
-        {
-            _wasPlaying = false;
+        [SerializeField]
+        private UnityEvent<float> _onPlaybackSet = new();
 
+        [SerializeField]
+        private UnityEvent<bool> _onPlayPause = new();
+
+        [SerializeField]
+        private UnityEvent<MidiEvent> _onMidiEvent = new();
+
+        private Playback _playback = null;
+        private bool _wasPlaying = false;
+
+        public float CurrentTime => _playback?.GetCurrentTimeAsFloat() ?? -1f;
+        public float Duration => _playback?.GetDurationAsFloat() ?? -1f;
+        public bool IsPlaying => _playback?.IsRunning ?? false;
+
+        #region Unity Lifecycle
+        private void OnEnable()
+        {
+            if (_wasPlaying)
+            {
+                _wasPlaying = false;
+
+                _playback?.Start();
+            }
+        }
+
+        private void OnDisable()
+        {
+            _wasPlaying = IsPlaying;
+
+            _playback?.Stop();
+        }
+
+        private void OnApplicationFocus(bool focus)
+        {
+            if (focus)
+            {
+                OnEnable();
+            }
+            else
+            {
+                OnDisable();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_playback != null)
+            {
+                CleanupPlayback(_playback);
+
+                _playback = null;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (IsPlaying)
+            {
+                _playback.TickClock();
+            }
+        }
+        #endregion Unity Lifecycle
+
+        public bool Initialize(Stream midiStream)
+        {
+            OnDestroy(); // Clean up playback (if any).
+
+            var midiFile = ReadMidiFromStream(midiStream);
+            if (midiFile == null)
+            {
+                Debug.LogError("Failed to initialize MIDI player.", this);
+                return false;
+            }
+
+            Debug.Log($"Finished loading MIDI, duration: {midiFile.GetDurationAsFloat():F1}", this);
+            _playback = SetupPlayback(midiFile);
+            _onPlaybackSet?.Invoke(Duration);
+            return true;
+        }
+
+        public void Play()
+        {
             _playback?.Start();
         }
-    }
 
-    private void OnDisable()
-    {
-        _wasPlaying = IsPlaying;
-
-        _playback?.Stop();
-    }
-
-    private void OnApplicationFocus(bool focus)
-    {
-        if (focus)
+        public void Pause()
         {
-            OnEnable();
-        }
-        else
-        {
-            OnDisable();
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (_playback != null)
-        {
-            TeardownPlayback(_playback);
-
-            _playback = null;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (IsPlaying)
-        {
-            _playback.TickClock();
-        }
-    }
-    #endregion Unity Lifecycle
-
-    public bool Initialize(Stream midiStream)
-    {
-        OnDestroy(); // Teardown playback (if any).
-
-        var midiFile = ReadMidiFromStream(midiStream);
-        if (midiFile == null)
-        {
-            Debug.LogError("Failed to initialize MIDI player.", this);
-            return false;
+            _playback?.Stop();
         }
 
-        Debug.Log($"Finished loading MIDI, duration: {midiFile.GetDurationAsFloat():F1}", this);
-        _playback = SetupPlayback(midiFile);
-        _onPlaybackSet?.Invoke(Duration);
-        return true;
-    }
-
-    public void Play()
-    {
-        _playback?.Start();
-    }
-
-    public void Pause()
-    {
-        _playback?.Stop();
-    }
-
-    public void Toggle()
-    {
-        if (IsPlaying)
+        public void Toggle()
         {
-            _playback.Stop();
+            if (IsPlaying)
+            {
+                _playback.Stop();
+            }
+            else
+            {
+                _playback.Start();
+            }
         }
-        else
+
+        public void MoveBack(int deltaSeconds)
         {
-            _playback.Start();
+            _playback?.MoveBack(deltaSeconds);
         }
-    }
 
-    public void MoveBack(int deltaSeconds)
-    {
-        _playback?.MoveBack(deltaSeconds);
-    }
-
-    public void MoveForward(int deltaSeconds)
-    {
-        _playback?.MoveForward(deltaSeconds);
-    }
-
-    public void MoveToTime(float playbackTimeSeconds)
-    {
-        _playback?.MoveToTime(playbackTimeSeconds);
-    }
-
-    private MidiFile ReadMidiFromStream(Stream stream)
-    {
-        try
+        public void MoveForward(int deltaSeconds)
         {
-            return MidiFile.Read(stream);
+            _playback?.MoveForward(deltaSeconds);
         }
-        catch (Exception exception) // TODO(dmoncada): handle specific exceptions.
+
+        public void Seek(float positionSeconds)
         {
-            Debug.LogException(exception, this);
-            return null;
+            _playback?.MoveToTime(positionSeconds);
         }
-    }
 
-    private Playback SetupPlayback(MidiFile midiFile)
-    {
-        var settings = new PlaybackSettings
+        private MidiFile ReadMidiFromStream(Stream stream)
         {
-            ClockSettings = new MidiClockSettings { CreateTickGeneratorCallback = () => null },
-        };
+            try
+            {
+                return MidiFile.Read(stream);
+            }
+            catch (Exception exception) // TODO(dmoncada): handle specific exceptions.
+            {
+                Debug.LogException(exception, this);
+                return null;
+            }
+        }
 
-        var playback = midiFile.GetPlayback(settings);
-        playback.Started += OnStartStop;
-        playback.Stopped += OnStartStop;
-        playback.Finished += OnFinished;
-        playback.EventPlayed += OnEventPlayed;
-        return playback;
+        private Playback SetupPlayback(MidiFile midiFile)
+        {
+            var settings = new PlaybackSettings
+            {
+                ClockSettings = new MidiClockSettings { CreateTickGeneratorCallback = () => null },
+            };
+
+            var playback = midiFile.GetPlayback(settings);
+            playback.Started += OnStartStop;
+            playback.Stopped += OnStartStop;
+            playback.Finished += OnFinished;
+            playback.EventPlayed += OnEventPlayed;
+            return playback;
+        }
+
+        private void CleanupPlayback(Playback playback)
+        {
+            playback.Stop();
+            playback.Started -= OnStartStop;
+            playback.Stopped -= OnStartStop;
+            playback.Finished -= OnFinished;
+            playback.EventPlayed -= OnEventPlayed;
+            playback.Dispose();
+        }
+
+        #region Event Handlers
+        private void OnStartStop(object sender, EventArgs args)
+        {
+            var status = IsPlaying ? "started" : "stopped";
+
+            Debug.Log($"Playback {status}, time: {CurrentTime:F1} secs.", this);
+
+            _onPlayPause?.Invoke(IsPlaying);
+        }
+
+        private void OnFinished(object sender, EventArgs args)
+        {
+            _onPlayPause?.Invoke(false);
+        }
+
+        private void OnEventPlayed(object _, MidiEventPlayedEventArgs args)
+        {
+            _onMidiEvent?.Invoke(args.Event);
+        }
+        #endregion Event Handlers
     }
 
-    private void TeardownPlayback(Playback playback)
+    public static class Extensions
     {
-        playback.Stop();
-        playback.Started -= OnStartStop;
-        playback.Stopped -= OnStartStop;
-        playback.Finished -= OnFinished;
-        playback.EventPlayed -= OnEventPlayed;
-        playback.Dispose();
-    }
+        public static float GetDurationAsFloat(this MidiFile midiFile)
+        {
+            return (float)midiFile.GetDuration<MetricTimeSpan>().TotalSeconds;
+        }
 
-    #region Event Handlers
-    private void OnStartStop(object sender, EventArgs args)
-    {
-        var status = IsPlaying ? "started" : "stopped";
+        public static float GetDurationAsFloat(this Playback playback)
+        {
+            return (float)playback.GetDuration<MetricTimeSpan>().TotalSeconds;
+        }
 
-        Debug.Log($"Playback {status}, time: {CurrentTime:F1} secs.", this);
+        public static float GetCurrentTimeAsFloat(this Playback playback)
+        {
+            return (float)playback.GetCurrentTime<MetricTimeSpan>().TotalSeconds;
+        }
 
-        _onPlayPause?.Invoke(IsPlaying);
-    }
+        public static void MoveBack(this Playback playback, int deltaSeconds)
+        {
+            playback.MoveBack(new MetricTimeSpan(0, 0, deltaSeconds));
+        }
 
-    private void OnFinished(object sender, EventArgs args)
-    {
-        _onPlayPause?.Invoke(false);
-    }
+        public static void MoveForward(this Playback playback, int deltaSeconds)
+        {
+            playback.MoveForward(new MetricTimeSpan(0, 0, deltaSeconds));
+        }
 
-    private void OnEventPlayed(object _, MidiEventPlayedEventArgs args)
-    {
-        _onMidiEvent?.Invoke(args.Event);
-    }
-    #endregion Event Handlers
-}
-
-public static class Extensions
-{
-    public static float GetDurationAsFloat(this MidiFile midiFile)
-    {
-        return (float)midiFile.GetDuration<MetricTimeSpan>().TotalSeconds;
-    }
-
-    public static float GetDurationAsFloat(this Playback playback)
-    {
-        return (float)playback.GetDuration<MetricTimeSpan>().TotalSeconds;
-    }
-
-    public static float GetCurrentTimeAsFloat(this Playback playback)
-    {
-        return (float)playback.GetCurrentTime<MetricTimeSpan>().TotalSeconds;
-    }
-
-    public static void MoveBack(this Playback playback, int deltaSeconds)
-    {
-        playback.MoveBack(new MetricTimeSpan(0, 0, deltaSeconds));
-    }
-
-    public static void MoveForward(this Playback playback, int deltaSeconds)
-    {
-        playback.MoveForward(new MetricTimeSpan(0, 0, deltaSeconds));
-    }
-
-    public static void MoveToTime(this Playback playback, float timeSeconds)
-    {
-        playback.MoveToTime(new MetricTimeSpan((long)(timeSeconds * 1_000_000)));
+        public static void MoveToTime(this Playback playback, float timeSeconds)
+        {
+            playback.MoveToTime(new MetricTimeSpan((long)(timeSeconds * 1_000_000)));
+        }
     }
 }

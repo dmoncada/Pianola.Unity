@@ -2,59 +2,62 @@ using System.Collections.Generic;
 using Melanchall.DryWetMidi.Core;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioClipProvider))]
-[RequireComponent(typeof(AudioSourcePool))]
-public class Piano : MonoBehaviour
+namespace Pianola
 {
-    private const int NumPianoKeys = 88;
-    private const int FirstMidiNote = 21;
-
-    private AudioClipProvider _clipProvider = null;
-    private AudioSourcePool _sourcePool = null;
-
-    private readonly Dictionary<int, PianoKey> _noteToKey = new();
-
-    private void Awake()
+    [RequireComponent(typeof(AudioClipProvider))]
+    [RequireComponent(typeof(AudioSourcePool))]
+    public class Piano : MonoBehaviour
     {
-        _clipProvider = GetComponent<AudioClipProvider>();
+        private const int NumPianoKeys = 88;
+        private const int FirstMidiNote = 21;
 
-        _sourcePool = GetComponent<AudioSourcePool>();
+        private AudioClipProvider _clipProvider = null;
+        private AudioSourcePool _sourcePool = null;
 
-        var keys = GetComponentsInChildren<PianoKey>();
+        private readonly Dictionary<int, PianoKey> _noteToKey = new();
 
-        Debug.Assert(keys.Length == NumPianoKeys, "Different number of piano keys than expected.");
-
-        int midiNote = FirstMidiNote;
-
-        foreach (var key in keys)
+        private void Awake()
         {
-            key.Initialize(midiNote, _sourcePool, _clipProvider);
-            _noteToKey[midiNote] = key;
-            midiNote += 1;
-        }
-    }
+            _clipProvider = GetComponent<AudioClipProvider>();
 
-    public void OnMidiEvent(MidiEvent midiEvent)
-    {
-        if (midiEvent is NoteOnEvent noteOn)
-        {
-            if (_noteToKey.TryGetValue(noteOn.NoteNumber, out var key))
+            _sourcePool = GetComponent<AudioSourcePool>();
+
+            var keys = GetComponentsInChildren<PianoKey>();
+
+            Debug.Assert(keys.Length == NumPianoKeys, $"Expected {NumPianoKeys} keys.", this);
+
+            int midiNote = FirstMidiNote;
+
+            foreach (var key in keys)
             {
-                if (noteOn.Velocity > 0)
+                key.Initialize(midiNote, _sourcePool, _clipProvider);
+                _noteToKey[midiNote] = key;
+                midiNote += 1;
+            }
+        }
+
+        public void OnMidiEvent(MidiEvent midiEvent)
+        {
+            if (midiEvent is NoteOnEvent noteOn)
+            {
+                if (_noteToKey.TryGetValue(noteOn.NoteNumber, out var key))
                 {
-                    key.Press(noteOn.Channel);
+                    if (noteOn.Velocity > 0)
+                    {
+                        key.Press(noteOn.Channel);
+                    }
+                    else
+                    {
+                        key.Release();
+                    }
                 }
-                else
+            }
+            if (midiEvent is NoteOffEvent noteOff)
+            {
+                if (_noteToKey.TryGetValue(noteOff.NoteNumber, out var key))
                 {
                     key.Release();
                 }
-            }
-        }
-        if (midiEvent is NoteOffEvent noteOff)
-        {
-            if (_noteToKey.TryGetValue(noteOff.NoteNumber, out var key))
-            {
-                key.Release();
             }
         }
     }

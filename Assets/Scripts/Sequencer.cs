@@ -1,71 +1,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sequencer : MonoBehaviour
+namespace Pianola
 {
-    [SerializeField]
-    private int _loopCount = 1;
-
-    private readonly List<GameObject> _sequenceItems = new();
-    private int _currentIndex = -1;
-
-    private void OnEnable()
+    public class Sequencer : MonoBehaviour
     {
-        Initialize();
+        [SerializeField]
+        private int _loopCount = 1;
 
-        Advance();
-    }
+        private readonly List<GameObject> _sequenceItems = new();
+        private int _currentIndex = -1;
 
-    private void Update()
-    {
-        if (_currentIndex < 0 || _currentIndex >= _sequenceItems.Count)
+        private void OnEnable()
         {
-            return;
-        }
+            Initialize();
 
-        if (_sequenceItems[_currentIndex].activeSelf == false)
-        {
             Advance();
         }
-    }
 
-    private void Initialize()
-    {
-        _sequenceItems.Clear();
-        _currentIndex = -1;
-
-        for (int i = 0; i < transform.childCount; i++)
+        private void Update()
         {
-            var child = transform.GetChild(i).gameObject;
-            _sequenceItems.Add(child);
-            child.SetActive(false);
-        }
-    }
-
-    public void Advance()
-    {
-        if (0 <= _currentIndex && _currentIndex < _sequenceItems.Count)
-        {
-            _sequenceItems[_currentIndex].SetActive(false);
-        }
-
-        if (++_currentIndex >= _sequenceItems.Count)
-        {
-            if (--_loopCount > 0)
+            if (_currentIndex < 0 || _currentIndex >= _sequenceItems.Count)
             {
-                _currentIndex = 0;
+                return;
             }
-            else
-            {
-                gameObject.SetActive(false);
 
-                return; // End of sequence
+            if (_sequenceItems[_currentIndex].activeSelf == false)
+            {
+                Advance();
             }
         }
 
-        if (_currentIndex < _sequenceItems.Count)
+        private void Initialize()
         {
-            _sequenceItems[_currentIndex].SetActive(true);
+            _sequenceItems.Clear();
+            _currentIndex = -1;
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i).gameObject;
+                _sequenceItems.Add(child);
+                child.SetActive(false);
+            }
+        }
+
+        public void Advance()
+        {
+            if (0 <= _currentIndex && _currentIndex < _sequenceItems.Count)
+            {
+                _sequenceItems[_currentIndex].SetActive(false);
+            }
+
+            if (++_currentIndex >= _sequenceItems.Count)
+            {
+                if (--_loopCount > 0)
+                {
+                    _currentIndex = 0;
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+
+                    return; // End of sequence
+                }
+            }
+
+            if (_currentIndex < _sequenceItems.Count)
+            {
+                _sequenceItems[_currentIndex].SetActive(true);
+            }
         }
     }
 }

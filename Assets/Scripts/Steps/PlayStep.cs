@@ -1,72 +1,37 @@
 using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class PlayStep : MonoBehaviour
+namespace Pianola
 {
-    [SerializeField]
-    private MidiPlayer _midiPlayer = null;
-
-    [SerializeField]
-    private string _midiFileName = "entertainer.mid";
-
-    [SerializeField]
-    private bool _playOnEnable = true;
-
-    [SerializeField]
-    private async Awaitable OnEnable()
+    public class PlayStep : MonoBehaviour
     {
-        string midiFilePath = Path.Combine(Application.streamingAssetsPath, _midiFileName);
+        [SerializeField]
+        private MidiPlayer _midiPlayer = null;
 
-        Stream midiStream = null;
-        try
+        [SerializeField]
+        private TextAsset _midiFileAsset = null;
+
+        [SerializeField]
+        private bool _playOnEnable = true;
+
+        private void OnEnable()
         {
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            Stream midiStream = null;
+            try
             {
-                midiStream = await LoadMidiAsStreamAsync(midiFilePath);
+                midiStream = new MemoryStream(_midiFileAsset.bytes);
+                var success = _midiPlayer.Initialize(midiStream);
+                if (success && _playOnEnable)
+                {
+                    _midiPlayer.Play();
+                }
             }
-            else
+            finally
             {
-                midiStream = LoadMidiAsStream(midiFilePath);
+                midiStream?.Dispose();
             }
 
-            var success = _midiPlayer.Initialize(midiStream);
-            if (success && _playOnEnable)
-            {
-                _midiPlayer.Play();
-            }
+            gameObject.SetActive(false); // Done, disable self.
         }
-        finally
-        {
-            midiStream?.Dispose();
-        }
-
-        gameObject.SetActive(false); // Done, disable self.
-    }
-
-    private Stream LoadMidiAsStream(string filePath)
-    {
-        if (File.Exists(filePath) == false)
-        {
-            Debug.LogError($"File: {filePath} does not exist.", this);
-            return null;
-        }
-
-        return File.OpenRead(filePath);
-    }
-
-    private async Awaitable<Stream> LoadMidiAsStreamAsync(string filePath)
-    {
-        using var request = UnityWebRequest.Get(filePath);
-        await request.SendWebRequest();
-
-        if (request.result != UnityWebRequest.Result.Success)
-        {
-            Debug.LogError(request.error, this);
-            return null;
-        }
-
-        var midiData = request.downloadHandler.data;
-        return new MemoryStream(midiData);
     }
 }

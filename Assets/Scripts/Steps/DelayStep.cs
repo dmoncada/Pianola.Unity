@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class DelayStep : MonoBehaviour
+namespace Pianola
 {
-    [SerializeField]
-    private float _delaySeconds = 1f;
-
-    private void OnEnable()
+    public class DelayStep : MonoBehaviour
     {
-        Invoke(nameof(DisableSelf), _delaySeconds);
-    }
+        [SerializeField]
+        private float _delaySeconds = 1f;
 
-    private void DisableSelf()
-    {
-        gameObject.SetActive(false);
+        private void OnEnable()
+        {
+            Invoke(nameof(DisableSelf), _delaySeconds);
+        }
+
+        private void DisableSelf()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
