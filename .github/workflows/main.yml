@@ -9,8 +9,8 @@ on:
       - "Assets/**.dll"
       - "Assets/**.asmdef"
       - "Assets/**/Plugins/**"
-      - "Tests/**.cs"
-      - "Tests/**.asmdef"
+      - "Assets/**/Tests/**.cs"
+      - "Assets/**/Tests/**.asmdef"
       - "Packages/**"
       - "ProjectSettings/**"
   workflow_dispatch:

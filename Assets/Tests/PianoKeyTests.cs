@@ -17,9 +17,9 @@ namespace Pianola.Tests
         [UnityTest]
         public IEnumerator TestPianoKeyPressRelease()
         {
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
+            yield return null;
+            yield return null;
+            yield return null;
 
             var piano = GameObject.Find("Piano");
             Assert.That(piano, Is.Not.Null);
