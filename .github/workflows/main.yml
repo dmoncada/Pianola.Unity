@@ -76,6 +76,15 @@ jobs:
         with:
           targetPlatform: WebGL
 
+      # Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          registry-url: "https://registry.npmjs.org"
+
+      # Compress
+      - run: npx gzipper compress build/Build --gzip --brotli --gzip-level 9 --brotli-quality 11 --remove-larger --verbose
+
       # Output
       - uses: actions/upload-artifact@v4
         with:
