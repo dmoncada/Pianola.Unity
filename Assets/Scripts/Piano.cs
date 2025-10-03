@@ -19,9 +19,11 @@ namespace Pianola
         private void Awake()
         {
             _clipProvider = GetComponent<AudioClipProvider>();
-
             _sourcePool = GetComponent<AudioSourcePool>();
+        }
 
+        private void Start()
+        {
             var keys = GetComponentsInChildren<PianoKey>();
 
             Debug.Assert(keys.Length == NumPianoKeys, $"Expected {NumPianoKeys} keys.", this);
@@ -30,7 +32,8 @@ namespace Pianola
 
             foreach (var key in keys)
             {
-                key.Initialize(midiNote, _sourcePool, _clipProvider);
+                var clip = _clipProvider.Get(midiNote.ToString());
+                key.Initialize(clip, _sourcePool);
                 _noteToKey[midiNote] = key;
                 midiNote += 1;
             }

@@ -24,8 +24,7 @@ namespace Pianola
         private Color _initialColor = default;
         private Color _targetColor = default;
 
-        private int _midiNote = -1;
-        private AudioClipProvider _clipProvider = null;
+        private AudioClip _clip = null;
         private AudioSourcePool _sourcePool = null;
         private bool _isInitialized = false;
 
@@ -47,15 +46,10 @@ namespace Pianola
             }
         }
 
-        public void Initialize(
-            int midiNote,
-            AudioSourcePool sourcePool,
-            AudioClipProvider clipProvider
-        )
+        public void Initialize(AudioClip clip, AudioSourcePool pool)
         {
-            _midiNote = midiNote;
-            _sourcePool = sourcePool;
-            _clipProvider = clipProvider;
+            _clip = clip;
+            _sourcePool = pool;
             _isInitialized = true;
         }
 
@@ -70,9 +64,8 @@ namespace Pianola
 
             _targetColor = channel == 0 ? Color.yellow : Color.cyan;
 
-            var clip = _clipProvider.Get(_midiNote.ToString());
             _activeSource = _sourcePool.Get();
-            _activeSource.clip = clip;
+            _activeSource.clip = _clip;
             _activeSource.Play();
         }
 

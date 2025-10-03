@@ -25,7 +25,7 @@ namespace Pianola.Tests
             Assert.That(piano, Is.Not.Null);
 
             var keys = piano.GetComponentsInChildren<PianoKey>();
-            Assert.That(keys.Length > 0);
+            Assert.That(keys.Length, Is.GreaterThan(0));
 
             var key = keys[0];
 

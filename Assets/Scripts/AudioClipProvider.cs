@@ -8,28 +8,28 @@ namespace Pianola
     public class AudioClipProvider : MonoBehaviour
     {
         [SerializeField]
-        private AudioClip[] _clips = new AudioClip[0];
+        private AudioClipCollection _clips = null;
 
-        private readonly Dictionary<string, AudioClip> _noteClips = new();
+        private readonly Dictionary<string, AudioClip> _noteToClip = new();
 
         private void Awake()
         {
-            foreach (var clip in _clips)
+            foreach (var clip in _clips.Clips)
             {
-                _noteClips[clip.name] = clip;
+                _noteToClip[clip.name] = clip;
             }
         }
 
         private async Awaitable Start()
         {
-            await Task.WhenAll(_clips.Select(clip => Task.FromResult(clip.LoadAudioData())));
+            await Task.WhenAll(_clips.Clips.Select(clip => Task.FromResult(clip.LoadAudioData())));
 
             Debug.Log("Finished loading audio clips.", this);
         }
 
         public AudioClip Get(string note)
         {
-            return _noteClips[note];
+            return _noteToClip[note];
         }
     }
 }

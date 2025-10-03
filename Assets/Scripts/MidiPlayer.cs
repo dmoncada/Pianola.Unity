@@ -102,6 +102,12 @@ namespace Pianola
             _playback?.Stop();
         }
 
+        public void Stop()
+        {
+            _playback?.Stop();
+            _playback?.MoveToStart();
+        }
+
         public void Toggle()
         {
             if (IsPlaying)
@@ -116,12 +122,12 @@ namespace Pianola
 
         public void MoveBack(int deltaSeconds)
         {
-            _playback?.MoveBack(deltaSeconds);
+            Seek(CurrentTime - deltaSeconds);
         }
 
         public void MoveForward(int deltaSeconds)
         {
-            _playback?.MoveForward(deltaSeconds);
+            Seek(CurrentTime + deltaSeconds);
         }
 
         public void Seek(float positionSeconds)

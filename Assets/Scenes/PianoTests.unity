@@ -256,6 +256,63 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &505374655
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 307802708175390646, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_Name
+      value: Piano
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00079
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.52567
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.05077
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
 --- !u!1 &615780002
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,83 +440,10 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1001 &766328469
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 307802708175390646, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_Name
-      value: Piano
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755294945153691580, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9914449
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755294945153691580, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.13052616
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755294945153691580, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755294945153691580, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 15
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 4786849}
   - {fileID: 615780004}
-  - {fileID: 766328469}
+  - {fileID: 505374655}
