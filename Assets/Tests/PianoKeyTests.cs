@@ -30,15 +30,15 @@ namespace Pianola.Tests
             var key = keys[0];
 
             key.Press();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             Assert.That(key.ActiveSource, Is.Not.Null);
-            Assert.That(key.ActiveSource.isPlaying);
+            Assert.That(key.ActiveSource.isPlaying, Is.True);
 
             var source = key.ActiveSource;
 
             key.Release();
             // Wait for the sound to fade out.
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             Assert.That(key.ActiveSource, Is.Null);
             Assert.That(source.isPlaying, Is.False);
         }

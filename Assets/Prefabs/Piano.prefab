@@ -56,6 +56,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piano
       objectReference: {fileID: 0}
+    - target: {fileID: 1213982112652399963, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213982112652399963, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213982112652399963, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213982112652399963, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754543980125224569, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -105
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -69,6 +89,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8070758790296646889}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6052856548075510305}
     - targetCorrespondingSourceObject: {fileID: 5092435360191703852, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 153468983316455223}
@@ -480,6 +503,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a8f557791e749eeae1e7f1537ad9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pianola::Pianola.Piano
+--- !u!95 &6052856548075510305
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307802708175390646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e00bf79dc9ff4bfc828eff1f4fada74, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &480870159768075419 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1020212528249046652, guid: f9bb48d401ca344428dcc99386c9be4a, type: 3}
