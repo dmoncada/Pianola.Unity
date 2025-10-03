@@ -83,7 +83,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       # Compress
-      - run: npx gzipper compress build/Build --gzip --brotli --gzip-level 9 --brotli-quality 11 --remove-larger --verbose
+      - run: npx gzipper compress build/WebGL/WebGL/Build --gzip --brotli --gzip-level 9 --brotli-quality 11 --remove-larger --verbose
 
       # Output
       - uses: actions/upload-artifact@v4
