@@ -75,6 +75,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: WebGL
+          runAsHostUser: true
 
       # Node.js
       - uses: actions/setup-node@v4
