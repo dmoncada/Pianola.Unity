@@ -1,0 +1,8 @@
+:root {
+}
+
+.time-label {
+    width: 50px;
+    -unity-text-align: upper-center;
+    color: rgb(255, 255, 255);
+}
