@@ -126,16 +126,6 @@ namespace Pianola
             }
         }
 
-        public void MoveBack(int deltaSeconds)
-        {
-            _playback?.MoveBack(deltaSeconds);
-        }
-
-        public void MoveForward(int deltaSeconds)
-        {
-            _playback?.MoveForward(deltaSeconds);
-        }
-
         public void Seek(float positionSeconds)
         {
             _playback?.MoveToTime(positionSeconds);
@@ -218,18 +208,10 @@ namespace Pianola
             return (float)playback.GetCurrentTime<MetricTimeSpan>().TotalSeconds;
         }
 
-        public static void MoveBack(this Playback playback, int deltaSeconds)
-        {
-            playback.MoveBack(new MetricTimeSpan(0, 0, deltaSeconds));
-        }
-
-        public static void MoveForward(this Playback playback, int deltaSeconds)
-        {
-            playback.MoveForward(new MetricTimeSpan(0, 0, deltaSeconds));
-        }
-
         public static void MoveToTime(this Playback playback, float timeSeconds)
         {
+            timeSeconds = Mathf.Clamp(timeSeconds, 0f, playback.GetDurationAsFloat());
+
             playback.MoveToTime(new MetricTimeSpan((long)(timeSeconds * 1_000_000)));
         }
     }

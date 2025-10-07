@@ -3,10 +3,10 @@
     <Style src="project://database/Assets/UI/Uss/TimeLabel.uss?fileID=7433441132597879392&amp;guid=0b31a0f238898436a9428ad11adf3035&amp;type=3#TimeLabel" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; align-items: flex-end; margin-bottom: 10px; padding-right: 10px; padding-left: 10px;">
         <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row; height: 40px;">
-            <ui:Button icon-image="project://database/Assets/UI/Textures/Back.svg?fileID=7388822144124034973&amp;guid=650b71c411f6b4f81aaf3257707fe940&amp;type=3#Back" name="Button_Back" class="button round-button" />
-            <ui:Button icon-image="project://database/Assets/UI/Textures/Stop.svg?fileID=7388822144124034973&amp;guid=eb844d394735440c0b3a393bef1a9be6&amp;type=3#Stop" name="Button_Stop" class="button round-button" />
-            <ui:Button icon-image="project://database/Assets/UI/Textures/Play.svg?fileID=7388822144124034973&amp;guid=94c7965fdd9644416a0347ceb72c9da3&amp;type=3#Play" name="Button_Play" class="button round-button" />
-            <ui:Button icon-image="project://database/Assets/UI/Textures/Forward.svg?fileID=7388822144124034973&amp;guid=b38900c3eb3e64f7984418915b58b593&amp;type=3#Forward" name="Button_Forward" class="button round-button" />
+            <ui:Button name="Button_Back" icon-image="project://database/Assets/UI/Textures/Back.svg?fileID=7388822144124034973&amp;guid=16a3fd023fe124fee80cbd11e544a055&amp;type=3#Back" class="button round-button" />
+            <ui:Button name="Button_Stop" icon-image="project://database/Assets/UI/Textures/Stop.svg?fileID=7388822144124034973&amp;guid=b2a082b10289b43c1abda5c66da609ff&amp;type=3#Stop" class="button round-button" />
+            <ui:Button name="Button_Play" icon-image="project://database/Assets/UI/Textures/Play.svg?fileID=7388822144124034973&amp;guid=8ec2d9b4c76be446dafce558d0194cbe&amp;type=3#Play" class="button round-button" />
+            <ui:Button name="Button_Forward" icon-image="project://database/Assets/UI/Textures/Forward.svg?fileID=7388822144124034973&amp;guid=4cde23a89ad0f447facee3784513aee4&amp;type=3#Forward" class="button round-button" />
             <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
                 <ui:Label text="0:00" name="Label_CurrentTime" class="time-label" />
                 <ui:Slider name="Slider_PlaybackPosition" high-value="1" style="flex-grow: 1;" />

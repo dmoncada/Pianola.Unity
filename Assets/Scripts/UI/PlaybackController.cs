@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Pianola
@@ -8,6 +9,9 @@ namespace Pianola
     {
         [SerializeField]
         private MidiPlayer _midiPlayer = null;
+
+        [SerializeField]
+        private InputActionAsset _inputActions = null;
 
         [SerializeField]
         private VectorImage _playImage = null;
@@ -55,6 +59,10 @@ namespace Pianola
             var dragContainer = _positionSlider.Q<VisualElement>("unity-drag-container");
             dragContainer.RegisterCallback<PointerUpEvent>(OnPointerUp);
             dragContainer.RegisterCallback<PointerDownEvent>(OnPointerDown);
+
+            _inputActions.FindAction("UI/Back").performed += OnBackActionPerformed;
+            _inputActions.FindAction("UI/Play").performed += OnPlayActionPerformed;
+            _inputActions.FindAction("UI/Forward").performed += OnForwardActionPerformed;
         }
 
         private void OnDisable()
@@ -68,6 +76,10 @@ namespace Pianola
             var dragContainer = _positionSlider.Q<VisualElement>("unity-drag-container");
             dragContainer.UnregisterCallback<PointerUpEvent>(OnPointerUp);
             dragContainer.UnregisterCallback<PointerDownEvent>(OnPointerDown);
+
+            _inputActions.FindAction("UI/Back").performed -= OnBackActionPerformed;
+            _inputActions.FindAction("UI/Play").performed -= OnPlayActionPerformed;
+            _inputActions.FindAction("UI/Forward").performed -= OnForwardActionPerformed;
         }
 
         private void Update()
@@ -132,6 +144,12 @@ namespace Pianola
             return isNegative ? $"-{formatted}" : formatted;
         }
 
+        private void OnPlayActionPerformed(InputAction.CallbackContext _) => OnPlayPauseClicked();
+
+        private void OnBackActionPerformed(InputAction.CallbackContext _) => OnBackClicked();
+
+        private void OnForwardActionPerformed(InputAction.CallbackContext _) => OnForwardClicked();
+
         private void OnPlayPauseClicked()
         {
             _midiPlayer.Toggle();
@@ -144,14 +162,14 @@ namespace Pianola
 
         private void OnBackClicked()
         {
-            _midiPlayer.MoveBack(5);
+            _midiPlayer.Seek(_midiPlayer.CurrentTime - 10);
 
             _isDirty = true;
         }
 
         private void OnForwardClicked()
         {
-            _midiPlayer.MoveForward(5);
+            _midiPlayer.Seek(_midiPlayer.CurrentTime + 10);
 
             _isDirty = true;
         }

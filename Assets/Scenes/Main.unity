@@ -468,8 +468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pianola::Pianola.PlaybackControlsUI
   _midiPlayer: {fileID: 596620425}
-  _playImage: {fileID: 7388822144124034973, guid: 94c7965fdd9644416a0347ceb72c9da3, type: 3}
-  _pauseImage: {fileID: 7388822144124034973, guid: 8b9b55002e03148d08898bd4d7d78b3e, type: 3}
+  _playImage: {fileID: 7388822144124034973, guid: 8ec2d9b4c76be446dafce558d0194cbe, type: 3}
+  _pauseImage: {fileID: 7388822144124034973, guid: cab7d2af9562e4a8fbeb8fc6672848bc, type: 3}
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _refreshRate: 1
 --- !u!114 &737427557
 MonoBehaviour:
