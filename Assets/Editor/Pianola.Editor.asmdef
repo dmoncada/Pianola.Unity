@@ -1,0 +1,19 @@
+{
+    "name": "Pianola.Editor",
+    "rootNamespace": "Pianola.Editor",
+    "references": [
+        "GUID:21634660438c54e55ab67f9b2811c25c",
+        "GUID:7c04f0dfa9243c04681a55d90d3ff3fc"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
