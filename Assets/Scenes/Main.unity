@@ -468,9 +468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pianola::Pianola.PlaybackControlsUI
   _midiPlayer: {fileID: 596620425}
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _playImage: {fileID: 7388822144124034973, guid: 8ec2d9b4c76be446dafce558d0194cbe, type: 3}
   _pauseImage: {fileID: 7388822144124034973, guid: cab7d2af9562e4a8fbeb8fc6672848bc, type: 3}
-  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _refreshRate: 1
 --- !u!114 &737427557
 MonoBehaviour:
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: 2033e37ded4434d94911ef235f9dee26, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: dd92fd4dbe0084d9fab711b2d57c607e, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: b3be1880e96484d74b5a721767c2022e, type: 3}
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
