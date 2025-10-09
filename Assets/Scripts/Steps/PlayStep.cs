@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -19,12 +20,23 @@ namespace Pianola
             Stream midiStream = null;
             try
             {
+                Debug.LogFormat(
+                    "Loading text asset: {0}, size: {1} bytes",
+                    _midiFileAsset.name,
+                    _midiFileAsset.dataSize,
+                    this
+                );
+
                 midiStream = new MemoryStream(_midiFileAsset.bytes);
                 var success = _midiPlayer.Initialize(midiStream);
                 if (success && _playOnEnable)
                 {
                     _midiPlayer.Play();
                 }
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception, this);
             }
             finally
             {

@@ -86,7 +86,12 @@ namespace Pianola
                 return false;
             }
 
-            Debug.Log($"Finished loading MIDI, duration: {midiFile.GetDurationAsFloat():F1}", this);
+            Debug.LogFormat(
+                "Finished loading MIDI file, duration: {0:F1} seconds.",
+                midiFile.GetDurationAsFloat(),
+                this
+            );
+
             _playback = SetupPlayback(midiFile);
             _onPlaybackSet?.Invoke(Duration);
             return true;
@@ -174,7 +179,7 @@ namespace Pianola
         {
             var status = IsPlaying ? "started" : "stopped";
 
-            Debug.Log($"Playback {status}, time: {CurrentTime:F1} secs.", this);
+            Debug.LogFormat("Playback {0}, time: {1:F1} seconds.", status, CurrentTime, this);
 
             _onPlayPause?.Invoke(IsPlaying);
         }

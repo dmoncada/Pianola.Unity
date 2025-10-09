@@ -5,10 +5,11 @@ namespace Pianola
 {
     public class Sequencer : MonoBehaviour
     {
+        private readonly List<GameObject> _sequenceItems = new();
+
         [SerializeField]
         private int _loopCount = 1;
 
-        private readonly List<GameObject> _sequenceItems = new();
         private int _currentIndex = -1;
 
         private void OnEnable()
@@ -48,6 +49,8 @@ namespace Pianola
         {
             if (0 <= _currentIndex && _currentIndex < _sequenceItems.Count)
             {
+                Debug.LogFormat("Deactivating: {0} ...", _sequenceItems[_currentIndex].name, this);
+
                 _sequenceItems[_currentIndex].SetActive(false);
             }
 
@@ -67,6 +70,8 @@ namespace Pianola
 
             if (_currentIndex < _sequenceItems.Count)
             {
+                Debug.LogFormat("Activating: {0} ...", _sequenceItems[_currentIndex].name, this);
+
                 _sequenceItems[_currentIndex].SetActive(true);
             }
         }
