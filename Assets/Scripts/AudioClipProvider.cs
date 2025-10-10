@@ -1,35 +1,51 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Pianola
 {
     public class AudioClipProvider : MonoBehaviour
     {
-        [SerializeField]
-        private AudioClipCollection _clips = null;
+        private readonly Dictionary<int, AudioClip> _noteToClip = new();
 
-        private readonly Dictionary<string, AudioClip> _noteToClip = new();
+        [SerializeField]
+        private AudioClipCollection _collection = null;
+
+        public AudioClip this[int noteNumber]
+        {
+            get => _noteToClip[noteNumber];
+            set => _noteToClip[noteNumber] = value;
+        }
+
+        public bool IsInitialized { get; private set; } = false;
 
         private void Awake()
         {
-            foreach (var clip in _clips.Clips)
+            foreach (var info in _collection.Infos)
             {
-                _noteToClip[clip.name] = clip;
+                _noteToClip[info.NoteNumber] = info.AudioClip;
             }
         }
 
         private async Awaitable Start()
         {
-            await Task.WhenAll(_clips.Clips.Select(clip => Task.FromResult(clip.LoadAudioData())));
+            foreach (var info in _collection.Infos)
+            {
+                var clip = info.AudioClip;
+
+                if (clip.preloadAudioData == false)
+                {
+                    clip.LoadAudioData();
+                }
+
+                while (clip.loadState == AudioDataLoadState.Loading)
+                {
+                    await Awaitable.EndOfFrameAsync();
+                }
+            }
 
             Debug.Log("Finished loading audio clips.", this);
-        }
 
-        public AudioClip Get(string note)
-        {
-            return _noteToClip[note];
+            IsInitialized = true;
         }
     }
 }

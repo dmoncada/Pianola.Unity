@@ -131,10 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piano
       objectReference: {fileID: 0}
-    - target: {fileID: 307802708175390646, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1084901601589779724, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -542,6 +538,17 @@ MonoBehaviour:
   _midiPlayer: {fileID: 596620425}
   _midiFileAsset: {fileID: 4900000, guid: bc1681e998e5949639ce6897e37fb789, type: 3}
   _playOnEnable: 1
+--- !u!114 &1036751421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 230652802657122020, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
+  m_PrefabInstance: {fileID: 33997159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585ae3a19d6e046beb6cdf8f9b14083e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pianola::Pianola.AudioClipProvider
 --- !u!1 &1316782977
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +593,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1916702802}
+  - {fileID: 1382955098}
   - {fileID: 1529077643}
   - {fileID: 1372353762}
   - {fileID: 955930838}
@@ -636,6 +644,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DelayStep
   _delaySeconds: 1
+--- !u!1 &1382955097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382955098}
+  - component: {fileID: 1382955099}
+  m_Layer: 0
+  m_Name: LoadAudioClipsStep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1382955098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382955097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1316782979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1382955099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382955097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5cd87ad12464bc3a1d8f60b13acf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pianola::Pianola.LoadAudioClipsStep
+  _provider: {fileID: 1036751421}
 --- !u!1 &1529077642
 GameObject:
   m_ObjectHideFlags: 0

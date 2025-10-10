@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585ae3a19d6e046beb6cdf8f9b14083e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pianola::Pianola.AudioClipProvider
-  _clips: {fileID: 11400000, guid: a013e908c07bd45158bd329459ffcd49, type: 2}
+  _collection: {fileID: 11400000, guid: a013e908c07bd45158bd329459ffcd49, type: 2}
 --- !u!114 &43643271131876286
 MonoBehaviour:
   m_ObjectHideFlags: 0

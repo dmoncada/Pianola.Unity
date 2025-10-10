@@ -4,22 +4,23 @@ using UnityEngine;
 
 namespace Pianola
 {
-    [RequireComponent(typeof(AudioClipProvider))]
     [RequireComponent(typeof(AudioSourcePool))]
+    [RequireComponent(typeof(AudioClipProvider))]
     public class Piano : MonoBehaviour
     {
         private const int NumPianoKeys = 88;
         private const int FirstMidiNote = 21;
 
-        private AudioClipProvider _clipProvider = null;
-        private AudioSourcePool _sourcePool = null;
-
         private readonly Dictionary<int, PianoKey> _noteToKey = new();
+
+        private AudioSourcePool _sourcePool = null;
+        private AudioClipProvider _clipProvider = null;
 
         private void Awake()
         {
-            _clipProvider = GetComponent<AudioClipProvider>();
             _sourcePool = GetComponent<AudioSourcePool>();
+
+            _clipProvider = GetComponent<AudioClipProvider>();
         }
 
         private void Start()
@@ -32,7 +33,7 @@ namespace Pianola
 
             foreach (var key in keys)
             {
-                var clip = _clipProvider.Get(midiNote.ToString());
+                var clip = _clipProvider[midiNote];
                 key.Initialize(clip, _sourcePool);
                 _noteToKey[midiNote] = key;
                 midiNote += 1;

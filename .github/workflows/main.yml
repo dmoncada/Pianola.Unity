@@ -78,14 +78,14 @@ jobs:
           targetPlatform: WebGL
           runAsHostUser: true
 
-      - name: Push updated version asset
-        run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git add Assets/ScriptableObjects/VersionAsset.asset
-          git commit -m "Update VersionAsset.asset."
-          git push origin main
-        if: ${{ steps.build.outcome == 'success' }}
+      # - name: Push updated version asset
+      #   run: |
+      #     git config --global user.name "${{ github.actor }}"
+      #     git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      #     git add Assets/ScriptableObjects/VersionAsset.asset
+      #     git commit -m "Update VersionAsset.asset."
+      #     git push origin main
+      #   if: ${{ steps.build.outcome == 'success' }}
 
       # Node.js
       - uses: actions/setup-node@v4
