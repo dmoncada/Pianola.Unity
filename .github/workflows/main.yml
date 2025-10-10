@@ -17,6 +17,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,7 +38,6 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          runAsHostUser: true
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -77,13 +78,14 @@ jobs:
           targetPlatform: WebGL
           runAsHostUser: true
 
-      - run: |
+      - name: Push updated version asset
+        run: |
           git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor}}@users.noreply.github.com"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git add Assets/ScriptableObjects/VersionAsset.asset
           git commit -m "Update VersionAsset.asset."
           git push origin main
-        if: steps.build.outcome == success()
+        if: ${{ steps.build.outcome == 'success' }}
 
       # Node.js
       - uses: actions/setup-node@v4
