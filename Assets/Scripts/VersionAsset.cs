@@ -18,7 +18,7 @@ namespace Pianola
         [CreateProperty]
         public string FormattedVersion
         {
-            get { return $"Build: {_version}"; }
+            get => $"Build: {_version}";
         }
     }
 }

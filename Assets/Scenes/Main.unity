@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 1529077643}
   - component: {fileID: 1529077644}
   m_Layer: 0
-  m_Name: AnimatePiano
+  m_Name: AnimatePianoStep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,6 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc90cbe7817e4f9a8ad2d89bcebbf7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Pianola::Pianola.AnimateFallboardStep
+  _playbackState: {fileID: 11400000, guid: bf77b8f2beb234442898a3d016f25829, type: 2}
   _pianoAnimator: {fileID: 697534944}
   _animationDuration: 2
 --- !u!1 &1568484560

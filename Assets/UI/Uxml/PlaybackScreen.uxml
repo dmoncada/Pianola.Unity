@@ -7,6 +7,10 @@
             </Bindings>
         </ui:Label>
         <ui:VisualElement name="Spacer" style="flex-grow: 1;" />
-        <ui:Instance template="PlaybackControls" />
+        <ui:Instance template="PlaybackControls">
+            <Bindings>
+                <ui:DataBinding property="style.opacity" data-source-path="Opacity" data-source="project://database/Assets/ScriptableObjects/PlaybackStateAsset.asset?fileID=11400000&amp;guid=bf77b8f2beb234442898a3d016f25829&amp;type=2#PlaybackStateAsset" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Instance>
     </ui:VisualElement>
 </ui:UXML>

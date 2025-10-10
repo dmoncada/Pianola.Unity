@@ -7,6 +7,9 @@ namespace Pianola
         private const string AnimationStateName = "AnimatePiano";
 
         [SerializeField]
+        private PlaybackStateAsset _playbackState = null;
+
+        [SerializeField]
         private Animator _pianoAnimator = null;
 
         [SerializeField]
@@ -21,17 +24,24 @@ namespace Pianola
 
         private void Update()
         {
-            if (IsFinished(AnimationStateName))
+            var progress = GetProgress(AnimationStateName);
+
+            if (_playbackState != null)
+            {
+                _playbackState.Opacity = progress;
+            }
+
+            if (progress >= 1f)
             {
                 gameObject.SetActive(false);
             }
         }
 
-        private bool IsFinished(string name)
+        private float GetProgress(string name)
         {
             var state = _pianoAnimator.GetCurrentAnimatorStateInfo(0);
 
-            return state.IsName(name) && state.normalizedTime >= 1f;
+            return state.IsName(name) ? state.normalizedTime : 0f;
         }
     }
 }
