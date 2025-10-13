@@ -65,6 +65,7 @@ namespace Pianola
             _targetColor = channel == 0 ? Color.yellow : Color.cyan;
 
             _activeSource = _sourcePool.Get();
+            _activeSource.transform.SetPositionAndRotation(transform.position, transform.rotation);
             _activeSource.clip = _clip;
             _activeSource.Play();
         }
@@ -110,6 +111,7 @@ namespace Pianola
                 yield return new WaitForEndOfFrame();
             }
 
+            source.transform.SetPositionAndRotation(default, default);
             pool.Release(source);
         }
     }
