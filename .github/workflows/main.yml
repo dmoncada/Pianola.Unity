@@ -22,7 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          lfs: true
+          lfs: false
+
+      - run: |
+          git lfs install
+          git config lfs.url ${{ vars.GIT_LFS_ENDPOINT }}
+          git config http.extraheader "Authorization: Basic $(echo -n '${{ vars.GIT_LFS_USERNAME }}:${{ secrets.GIT_LFS_PASSWORD }}' | base64)"
+          git lfs pull --all
 
       - uses: actions/cache@v3
         with:
@@ -56,7 +62,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          lfs: true
+          lfs: false
+
+      # LFS
+      - name: Configure Git LFS
+        run: |
+          git lfs install
+          git config lfs.url ${{ vars.GIT_LFS_ENDPOINT }}
+          git config http.extraheader "Authorization: Basic $(echo -n '${{ vars.GIT_LFS_USERNAME }}:${{ secrets.GIT_LFS_PASSWORD }}' | base64)"
+          git lfs pull --all
+        env:
+          GIT_TRACE: 1
 
       # Cache
       - uses: actions/cache@v3
@@ -101,10 +117,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-        with:
-          lfs: true
-
       - uses: actions/download-artifact@v4
         with:
           name: Build
