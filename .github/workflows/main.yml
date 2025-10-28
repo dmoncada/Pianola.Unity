@@ -86,7 +86,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       # Compress
-      - run: npx gzipper compress Builds/WebGL/Build/*.{data,wasm} --gzip --brotli --gzip-level 9 --brotli-quality 11 --remove-larger --verbose
+      - run: npx gzipper compress Builds/WebGL/Build/ --include="data,wasm" --gzip --brotli --gzip-level 9 --brotli-quality 11 --remove-larger --verbose
 
       # Output
       - uses: actions/upload-artifact@v4
@@ -98,6 +98,8 @@ jobs:
     name: Deploy 🚀
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
