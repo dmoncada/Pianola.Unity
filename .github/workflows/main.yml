@@ -91,6 +91,7 @@ jobs:
         with:
           targetPlatform: WebGL
           runAsHostUser: true
+          allowDirtyBuild: true
           buildMethod: Pianola.Editor.Builder.BuildWebGL
 
       # Node.js
