@@ -26,8 +26,7 @@ jobs:
 
       - run: |
           git lfs install
-          git config lfs.url ${{ vars.GIT_LFS_ENDPOINT }}
-          git config http.extraheader "Authorization: Basic $(echo -n '${{ vars.GIT_LFS_USERNAME }}:${{ secrets.GIT_LFS_PASSWORD }}' | base64)"
+          git config -f .lfsconfig lfs.url https://${{ vars.GIT_LFS_USERNAME }}:${{ secrets.GIT_LFS_PASSWORD }}@${{ vars.GIT_LFS_ENDPOINT }}
           git lfs pull
 
       - uses: actions/cache@v3
@@ -68,8 +67,7 @@ jobs:
       - name: Configure Git LFS
         run: |
           git lfs install
-          git config lfs.url ${{ vars.GIT_LFS_ENDPOINT }}
-          git config http.extraheader "Authorization: Basic $(echo -n '${{ vars.GIT_LFS_USERNAME }}:${{ secrets.GIT_LFS_PASSWORD }}' | base64)"
+          git config -f .lfsconfig lfs.url https://${{ vars.GIT_LFS_USERNAME }}:${{ secrets.GIT_LFS_PASSWORD }}@${{ vars.GIT_LFS_ENDPOINT }}
           git lfs pull
         env:
           GIT_TRACE: 1
