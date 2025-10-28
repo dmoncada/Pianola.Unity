@@ -11,7 +11,13 @@ namespace Pianola
         private MidiPlayer _midiPlayer = null;
 
         [SerializeField]
-        private InputActionAsset _inputActions = null;
+        private InputActionReference _backAction = null;
+
+        [SerializeField]
+        private InputActionReference _playAction = null;
+
+        [SerializeField]
+        private InputActionReference _forwardAction = null;
 
         [SerializeField]
         private VectorImage _playImage = null;
@@ -60,9 +66,9 @@ namespace Pianola
             dragContainer.RegisterCallback<PointerUpEvent>(OnPointerUp);
             dragContainer.RegisterCallback<PointerDownEvent>(OnPointerDown);
 
-            _inputActions.FindAction("UI/Back").performed += OnBackActionPerformed;
-            _inputActions.FindAction("UI/Play").performed += OnPlayActionPerformed;
-            _inputActions.FindAction("UI/Forward").performed += OnForwardActionPerformed;
+            _backAction.action.performed += OnBackActionPerformed;
+            _playAction.action.performed += OnPlayActionPerformed;
+            _forwardAction.action.performed += OnForwardActionPerformed;
         }
 
         private void OnDisable()
@@ -77,9 +83,9 @@ namespace Pianola
             dragContainer.UnregisterCallback<PointerUpEvent>(OnPointerUp);
             dragContainer.UnregisterCallback<PointerDownEvent>(OnPointerDown);
 
-            _inputActions.FindAction("UI/Back").performed -= OnBackActionPerformed;
-            _inputActions.FindAction("UI/Play").performed -= OnPlayActionPerformed;
-            _inputActions.FindAction("UI/Forward").performed -= OnForwardActionPerformed;
+            _backAction.action.performed -= OnBackActionPerformed;
+            _playAction.action.performed -= OnPlayActionPerformed;
+            _forwardAction.action.performed -= OnForwardActionPerformed;
         }
 
         private void Update()

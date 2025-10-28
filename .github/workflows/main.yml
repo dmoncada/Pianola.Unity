@@ -114,4 +114,4 @@ jobs:
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: Builds/WebGL
-          token: ${{ secrets.GH_DEPLOY_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}

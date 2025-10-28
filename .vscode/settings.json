@@ -1,4 +1,7 @@
 {
+    "[csharp]": {
+        "editor.defaultFormatter": "csharpier.csharpier-vscode"
+    },
     "files.exclude": {
         "**/.DS_Store": true,
         "**/.git": true,
@@ -61,10 +64,12 @@
         "*.meta": "yaml",
         "*.prefab": "yaml",
         "*.unity": "yaml",
+        "*.uss": "css",
+        "*.uxml": "xml"
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
-        "*.sln": "*.csproj",
+        "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Pianola.Unity.sln"
+    "dotnet.defaultSolution": "Pianola.Unity.slnx"
 }
