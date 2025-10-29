@@ -40,7 +40,7 @@ namespace Pianola.Tests
             // Wait for the sound to fade out.
             yield return new WaitForSeconds(1f);
             Assert.That(key.ActiveSource, Is.Null);
-            // Assert.That(source.isPlaying, Is.False);
+            Assert.That(source.isPlaying, Is.False);
         }
     }
 }
