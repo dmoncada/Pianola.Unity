@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Pianola::Pianola.MouseOverVisualElement
   _document: {fileID: 737427557}
-  _trackedElementNames:
+  _targetElementNames:
   - PlaybackControls
 --- !u!1 &955930837
 GameObject:
@@ -1093,20 +1093,24 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: 5972548838457074408, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: -1
+        CancelDeltaTime: 0
       InputValue: 0
       Driver:
-        AccelTime: 0
-        DecelTime: 0
+        AccelTime: 0.2
+        DecelTime: 0.2
     - Name: Look Y (Tilt)
       Owner: {fileID: 1802061632}
       Enabled: 1
       Input:
         InputAction: {fileID: 5972548838457074408, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: 1
+        CancelDeltaTime: 0
       InputValue: 0
       Driver:
-        AccelTime: 0
-        DecelTime: 0
+        AccelTime: 0.2
+        DecelTime: 0.2
+  PlayerIndex: -1
+  AutoEnableInputs: 1
   _hoverDetector: {fileID: 737427558}
 --- !u!1 &1916702801
 GameObject:

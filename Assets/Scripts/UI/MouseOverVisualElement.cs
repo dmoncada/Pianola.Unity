@@ -15,9 +15,10 @@ namespace Pianola
         private UIDocument _document = null;
 
         [SerializeField]
-        private string[] _trackedElementNames = new string[0];
+        private string[] _targetElementNames = new string[0];
 
-        public bool Hovered { get; private set; } = false;
+        [field: SerializeField, ReadOnly]
+        public bool HoveredOverTarget { get; private set; } = false;
 
         private Mouse _mouse = null;
         private IPanel _panel = null;
@@ -27,7 +28,7 @@ namespace Pianola
         {
             _mouse = Mouse.current;
             _panel = _document.rootVisualElement.panel;
-            _elementNames = new(_trackedElementNames);
+            _elementNames = new(_targetElementNames);
         }
 
         private void Update()
@@ -44,15 +45,7 @@ namespace Pianola
                 return;
             }
 
-            var detected = _hoveredElements.Any(e => _elementNames.Contains(e.name));
-            if (detected && Hovered == false)
-            {
-                Hovered = true;
-            }
-            else if (Hovered && detected == false)
-            {
-                Hovered = false;
-            }
+            HoveredOverTarget = _hoveredElements.Any(e => _elementNames.Contains(e.name));
         }
     }
 }

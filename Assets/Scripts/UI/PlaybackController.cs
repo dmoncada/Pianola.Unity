@@ -7,6 +7,8 @@ namespace Pianola
     [RequireComponent(typeof(UIDocument))]
     public class PlaybackControlsUI : MonoBehaviour
     {
+        private const TrickleDown UseTrickleDown = TrickleDown.TrickleDown;
+
         [SerializeField]
         private MidiPlayer _midiPlayer = null;
 
@@ -41,8 +43,6 @@ namespace Pianola
         private bool _isDragging = false;
         private bool _isDirty = false;
 
-        private TrickleDown _useTrickleDown => TrickleDown.TrickleDown;
-
         private void Awake()
         {
             var root = GetComponent<UIDocument>().rootVisualElement;
@@ -65,8 +65,8 @@ namespace Pianola
 
             _positionSlider.RegisterValueChangedCallback(OnSliderDragged);
             var dragContainer = _positionSlider.Q<VisualElement>("unity-drag-container");
-            dragContainer.RegisterCallback<PointerUpEvent>(OnPointerUp, _useTrickleDown);
-            dragContainer.RegisterCallback<PointerDownEvent>(OnPointerDown, _useTrickleDown);
+            dragContainer.RegisterCallback<PointerUpEvent>(OnPointerUp, UseTrickleDown);
+            dragContainer.RegisterCallback<PointerDownEvent>(OnPointerDown, UseTrickleDown);
 
             _backAction.action.performed += OnBackActionPerformed;
             _playAction.action.performed += OnPlayActionPerformed;

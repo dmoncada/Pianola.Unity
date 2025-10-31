@@ -8,6 +8,8 @@ on:
       - "Assets/**.cs"
       - "Assets/**.dll"
       - "Assets/**.asmdef"
+      - "Assets/**.uss"
+      - "Assets/**.uxml"
       - "Assets/**/Plugins/**"
       - "Packages/**"
       - "ProjectSettings/**"

@@ -1,16 +1,16 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="PlaybackControls" src="project://database/Assets/UI/Uxml/PlaybackControls.uxml?fileID=9197481963319205126&amp;guid=dd92fd4dbe0084d9fab711b2d57c607e&amp;type=3#PlaybackControls" />
-    <ui:VisualElement style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
-        <ui:Label text="Label" name="BuildLabel" style="color: rgb(255, 255, 255);">
-            <Bindings>
-                <ui:DataBinding property="text" data-source-path="FormattedVersion" data-source="project://database/Assets/ScriptableObjects/VersionAsset.asset?fileID=11400000&amp;guid=6960e424fde764e80972fe864a2650d9&amp;type=2#VersionAsset" binding-mode="ToTarget" />
-            </Bindings>
-        </ui:Label>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 0; padding-top: 0; padding-right: 10px; padding-bottom: 0; padding-left: 10px;">
+            <ui:Label text="Label" name="BuildLabel" style="color: rgb(255, 255, 255);">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="FormattedVersion" data-source="project://database/Assets/ScriptableObjects/VersionAsset.asset?fileID=11400000&amp;guid=6960e424fde764e80972fe864a2650d9&amp;type=2#VersionAsset" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
         <ui:VisualElement name="Spacer" style="flex-grow: 1;" />
-        <ui:Instance template="PlaybackControls" name="PlaybackControls">
-            <Bindings>
-                <ui:DataBinding property="style.opacity" data-source-path="Opacity" data-source="project://database/Assets/ScriptableObjects/PlaybackStateAsset.asset?fileID=11400000&amp;guid=bf77b8f2beb234442898a3d016f25829&amp;type=2#PlaybackStateAsset" binding-mode="ToTarget" />
-            </Bindings>
-        </ui:Instance>
+        <ui:VisualElement name="PlaybackControls" style="flex-grow: 0; background-color: rgba(119, 136, 153, 0.5); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+            <ui:Instance template="PlaybackControls" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

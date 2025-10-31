@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/CustomSlider.uss?fileID=7433441132597879392&amp;guid=8b3cac17fbd34458bbf1e1c000456041&amp;type=3#CustomSlider" />
     <Style src="project://database/Assets/UI/Uss/RoundButton.uss?fileID=7433441132597879392&amp;guid=36e5b2b5a87884d07b4b258763c8891e&amp;type=3#RoundButton" />
     <Style src="project://database/Assets/UI/Uss/TimeLabel.uss?fileID=7433441132597879392&amp;guid=0b31a0f238898436a9428ad11adf3035&amp;type=3#TimeLabel" />
     <ui:VisualElement style="align-items: center; flex-direction: row; height: 40px;">
@@ -8,7 +9,7 @@
         <ui:Button name="Button_Forward" icon-image="project://database/Assets/UI/Textures/Forward.svg?fileID=7388822144124034973&amp;guid=4cde23a89ad0f447facee3784513aee4&amp;type=3#Forward" class="button round-button" />
         <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
             <ui:Label text="0:00" name="Label_CurrentTime" class="time-label" />
-            <ui:Slider name="Slider_PlaybackPosition" high-value="1" style="flex-grow: 1;" />
+            <ui:Slider high-value="1" name="Slider_PlaybackPosition" style="flex-grow: 1;" />
             <ui:Label text="-3:00" name="Label_RemainingTime" class="time-label" />
         </ui:VisualElement>
     </ui:VisualElement>
