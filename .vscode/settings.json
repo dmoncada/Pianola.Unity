@@ -69,7 +69,7 @@
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
-        "*.sln": "*.csproj"
+        "*.slnx": "*.csproj",
     },
     "dotnet.defaultSolution": "Pianola.Unity.slnx"
 }

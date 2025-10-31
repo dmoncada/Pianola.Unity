@@ -462,6 +462,7 @@ GameObject:
   - component: {fileID: 737427555}
   - component: {fileID: 737427557}
   - component: {fileID: 737427556}
+  - component: {fileID: 737427558}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -526,6 +527,21 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &737427558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737427552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7805262369348638b661a02f20d7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pianola::Pianola.MouseOverVisualElement
+  _document: {fileID: 737427557}
+  _trackedElementNames:
+  - PlaybackControls
 --- !u!1 &955930837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,9 +1079,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1802061629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2786c0f78e78848e1b5db3728fb4c526, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineInputAxisController
+  m_EditorClassIdentifier: Pianola::Pianola.CustomInputAxisController
   ScanRecursively: 1
   SuppressInputWhileBlending: 1
   IgnoreTimeScale: 0
@@ -1077,24 +1093,21 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: 5972548838457074408, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: -1
-        CancelDeltaTime: 0
       InputValue: 0
       Driver:
-        AccelTime: 0.2
-        DecelTime: 0.2
+        AccelTime: 0
+        DecelTime: 0
     - Name: Look Y (Tilt)
       Owner: {fileID: 1802061632}
       Enabled: 1
       Input:
         InputAction: {fileID: 5972548838457074408, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: 1
-        CancelDeltaTime: 0
       InputValue: 0
       Driver:
-        AccelTime: 0.2
-        DecelTime: 0.2
-  PlayerIndex: -1
-  AutoEnableInputs: 1
+        AccelTime: 0
+        DecelTime: 0
+  _hoverDetector: {fileID: 737427558}
 --- !u!1 &1916702801
 GameObject:
   m_ObjectHideFlags: 0
