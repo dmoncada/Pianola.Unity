@@ -121,13 +121,16 @@ namespace Pianola
 
         public void Toggle()
         {
-            if (IsPlaying)
+            if (isActiveAndEnabled)
             {
-                _playback.Stop();
-            }
-            else
-            {
-                _playback.Start();
+                if (IsPlaying)
+                {
+                    _playback.Stop();
+                }
+                else
+                {
+                    _playback.Start();
+                }
             }
         }
 

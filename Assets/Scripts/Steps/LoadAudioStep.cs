@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Pianola
 {
-    public class LoadAudioClipsStep : MonoBehaviour
+    public class LoadAudioStep : MonoBehaviour
     {
         [SerializeField]
         private AudioClipProvider _provider = null;

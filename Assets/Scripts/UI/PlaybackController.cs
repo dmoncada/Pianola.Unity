@@ -1,11 +1,11 @@
+using Pianola.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Pianola
 {
     [RequireComponent(typeof(UIDocument))]
-    public class PlaybackControlsUI : MonoBehaviour
+    public class PlaybackController : MonoBehaviour
     {
         private const TrickleDown UseTrickleDown = TrickleDown.TrickleDown;
 
@@ -13,13 +13,16 @@ namespace Pianola
         private MidiPlayer _midiPlayer = null;
 
         [SerializeField]
-        private InputActionReference _backAction = null;
+        private InputActionButton _onScreenBackButton = default;
 
         [SerializeField]
-        private InputActionReference _playAction = null;
+        private InputActionButton _onScreenStopButton = default;
 
         [SerializeField]
-        private InputActionReference _forwardAction = null;
+        private InputActionButton _onScreenPlayButton = default;
+
+        [SerializeField]
+        private InputActionButton _onScreenForwardButton = default;
 
         [SerializeField]
         private VectorImage _playImage = null;
@@ -54,40 +57,37 @@ namespace Pianola
             _currentTimeLabel = root.Q<Label>("Label_CurrentTime");
             _remainingTimeLabel = root.Q<Label>("Label_RemainingTime");
             _positionSlider = root.Q<Slider>("Slider_PlaybackPosition");
+
+            _onScreenBackButton.Set(_backButton);
+            _onScreenStopButton.Set(_stopButton);
+            _onScreenPlayButton.Set(_playButton);
+            _onScreenForwardButton.Set(_forwardButton);
         }
 
         private void OnEnable()
         {
-            _backButton.clicked += OnBackClicked;
-            _stopButton.clicked += OnStopClicked;
-            _playButton.clicked += OnPlayPauseClicked;
-            _forwardButton.clicked += OnForwardClicked;
+            _onScreenBackButton.Bind(OnBackActionPerformed);
+            _onScreenStopButton.Bind(OnStopActionPerformed);
+            _onScreenPlayButton.Bind(OnPlayActionPerformed);
+            _onScreenForwardButton.Bind(OnForwardActionPerformed);
 
             _positionSlider.RegisterValueChangedCallback(OnSliderDragged);
             var dragContainer = _positionSlider.Q<VisualElement>("unity-drag-container");
             dragContainer.RegisterCallback<PointerUpEvent>(OnPointerUp, UseTrickleDown);
             dragContainer.RegisterCallback<PointerDownEvent>(OnPointerDown, UseTrickleDown);
-
-            _backAction.action.performed += OnBackActionPerformed;
-            _playAction.action.performed += OnPlayActionPerformed;
-            _forwardAction.action.performed += OnForwardActionPerformed;
         }
 
         private void OnDisable()
         {
-            _backButton.clicked -= OnBackClicked;
-            _stopButton.clicked -= OnStopClicked;
-            _playButton.clicked -= OnPlayPauseClicked;
-            _forwardButton.clicked -= OnForwardClicked;
+            _onScreenBackButton.Unbind();
+            _onScreenStopButton.Unbind();
+            _onScreenPlayButton.Unbind();
+            _onScreenForwardButton.Unbind();
 
             _positionSlider.UnregisterValueChangedCallback(OnSliderDragged);
             var dragContainer = _positionSlider.Q<VisualElement>("unity-drag-container");
             dragContainer.UnregisterCallback<PointerUpEvent>(OnPointerUp);
             dragContainer.UnregisterCallback<PointerDownEvent>(OnPointerDown);
-
-            _backAction.action.performed -= OnBackActionPerformed;
-            _playAction.action.performed -= OnPlayActionPerformed;
-            _forwardAction.action.performed -= OnForwardActionPerformed;
         }
 
         private void Update()
@@ -152,30 +152,24 @@ namespace Pianola
             return isNegative ? $"-{formatted}" : formatted;
         }
 
-        private void OnPlayActionPerformed(InputAction.CallbackContext _) => OnPlayPauseClicked();
-
-        private void OnBackActionPerformed(InputAction.CallbackContext _) => OnBackClicked();
-
-        private void OnForwardActionPerformed(InputAction.CallbackContext _) => OnForwardClicked();
-
-        private void OnPlayPauseClicked()
+        private void OnPlayActionPerformed()
         {
             _midiPlayer.Toggle();
         }
 
-        private void OnStopClicked()
+        private void OnStopActionPerformed()
         {
             _midiPlayer.Stop();
         }
 
-        private void OnBackClicked()
+        private void OnBackActionPerformed()
         {
             _midiPlayer.Seek(_midiPlayer.CurrentTime - 10);
 
             _isDirty = true;
         }
 
-        private void OnForwardClicked()
+        private void OnForwardActionPerformed()
         {
             _midiPlayer.Seek(_midiPlayer.CurrentTime + 10);
 

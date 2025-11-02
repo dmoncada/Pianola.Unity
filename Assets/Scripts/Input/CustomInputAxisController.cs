@@ -2,7 +2,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Pianola
+namespace Pianola.Input
 {
     public class CustomInputAxisController : CinemachineInputAxisController
     {
