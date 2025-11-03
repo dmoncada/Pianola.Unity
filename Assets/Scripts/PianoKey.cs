@@ -111,6 +111,9 @@ namespace Pianola
                 yield return new WaitForEndOfFrame();
             }
 
+            source.Stop();
+            source.clip = null;
+            source.volume = 1f;
             source.transform.SetPositionAndRotation(default, default);
             pool.Release(source);
         }

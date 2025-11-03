@@ -87,8 +87,8 @@ namespace Pianola
             }
 
             Debug.LogFormat(
-                "Finished loading MIDI file, duration: {0:F1} seconds.",
-                midiFile.GetDurationAsFloat(),
+                "Finished loading MIDI file, duration: {0}",
+                Utils.FormatTime(midiFile.GetDurationAsFloat()),
                 this
             );
 
@@ -182,7 +182,7 @@ namespace Pianola
         {
             var status = IsPlaying ? "started" : "stopped";
 
-            Debug.LogFormat("Playback {0}, time: {1:F1} seconds.", status, CurrentTime, this);
+            Debug.LogFormat("Playback {0}, time: {1}", status, Utils.FormatTime(CurrentTime), this);
 
             _onPlayPause?.Invoke(IsPlaying);
         }

@@ -6,7 +6,7 @@ using static UnityEngine.InputSystem.InputAction;
 namespace Pianola.Input
 {
     [Serializable]
-    public struct InputActionButton
+    public class InputActionButton
     {
         private const TrickleDown UseTrickleDown = TrickleDown.TrickleDown;
 
@@ -16,9 +16,17 @@ namespace Pianola.Input
         private Button _uiToolkitButton;
         private Action _callback;
 
-        public void Set(Button uiToolkitButton)
+        public Button UIToolkitButton
         {
-            _uiToolkitButton = uiToolkitButton;
+            get => _uiToolkitButton;
+            set
+            {
+                UIToolkit_UnregisterCallbacks(_uiToolkitButton);
+
+                _uiToolkitButton = value;
+
+                UIToolkit_RegisterCallbacks(_uiToolkitButton);
+            }
         }
 
         public void Bind(Action callback)
@@ -28,8 +36,6 @@ namespace Pianola.Input
                 _callback = callback;
                 Action.action.Enable();
                 Action.action.performed += OnActionPerformed;
-                _uiToolkitButton?.RegisterCallback<PointerUpEvent>(Press, UseTrickleDown);
-                _uiToolkitButton?.RegisterCallback<PointerDownEvent>(Release, UseTrickleDown);
                 BindInputActionToOnScreenButton(Action, Button);
             }
         }
@@ -41,8 +47,6 @@ namespace Pianola.Input
                 _callback = null;
                 Action.action.Disable();
                 Action.action.performed -= OnActionPerformed;
-                _uiToolkitButton?.UnregisterCallback<PointerUpEvent>(Press, UseTrickleDown);
-                _uiToolkitButton?.UnregisterCallback<PointerDownEvent>(Release, UseTrickleDown);
                 Button.controlPath = string.Empty;
             }
         }
@@ -52,12 +56,30 @@ namespace Pianola.Input
             _callback.Invoke();
         }
 
-        private void Press(PointerUpEvent _)
+        private void UIToolkit_RegisterCallbacks(Button button)
+        {
+            if (button != null)
+            {
+                button.RegisterCallback<PointerDownEvent>(Press, UseTrickleDown);
+                button.RegisterCallback<PointerUpEvent>(Release, UseTrickleDown);
+            }
+        }
+
+        private void UIToolkit_UnregisterCallbacks(Button button)
+        {
+            if (button != null)
+            {
+                button.UnregisterCallback<PointerDownEvent>(Press, UseTrickleDown);
+                button.UnregisterCallback<PointerUpEvent>(Release, UseTrickleDown);
+            }
+        }
+
+        private void Press(PointerDownEvent _)
         {
             Button.Press();
         }
 
-        private void Release(PointerDownEvent _)
+        private void Release(PointerUpEvent _)
         {
             Button.Release();
         }
@@ -70,7 +92,7 @@ namespace Pianola.Input
             foreach (var binding in action.bindings)
             {
                 var path = binding.effectivePath;
-                if (path.StartsWith("<Keyboard>/"))
+                if (path.StartsWith("<Keyboard>"))
                 {
                     button.controlPath = path;
                     return;

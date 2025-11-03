@@ -25,7 +25,7 @@ namespace Pianola
                 Create,
                 OnGet,
                 OnRelease,
-                (_) => { },
+                default,
                 _checkCollection,
                 _initialCapacity,
                 _maxSize
@@ -54,9 +54,6 @@ namespace Pianola
 
         private void OnRelease(AudioSource source)
         {
-            source.Stop();
-            source.clip = null;
-            source.volume = 1f;
             source.gameObject.SetActive(false);
         }
     }

@@ -21,9 +21,9 @@ namespace Pianola
             try
             {
                 Debug.LogFormat(
-                    "Loading text asset: {0}, size: {1} bytes",
+                    "Loading text asset: {0}, size: {1}",
                     _midiFileAsset.name,
-                    _midiFileAsset.dataSize,
+                    Utils.FormatBytes(_midiFileAsset.dataSize),
                     this
                 );
 

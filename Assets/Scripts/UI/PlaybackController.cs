@@ -58,10 +58,10 @@ namespace Pianola
             _remainingTimeLabel = root.Q<Label>("Label_RemainingTime");
             _positionSlider = root.Q<Slider>("Slider_PlaybackPosition");
 
-            _onScreenBackButton.Set(_backButton);
-            _onScreenStopButton.Set(_stopButton);
-            _onScreenPlayButton.Set(_playButton);
-            _onScreenForwardButton.Set(_forwardButton);
+            _onScreenBackButton.UIToolkitButton = _backButton;
+            _onScreenStopButton.UIToolkitButton = _stopButton;
+            _onScreenPlayButton.UIToolkitButton = _playButton;
+            _onScreenForwardButton.UIToolkitButton = _forwardButton;
         }
 
         private void OnEnable()
@@ -125,31 +125,14 @@ namespace Pianola
 
         private void RefreshTimeLabels(float currentTime, float duration)
         {
-            _currentTimeLabel.text = FormatTime(currentTime);
+            _currentTimeLabel.text = Utils.FormatTime(currentTime);
 
-            _remainingTimeLabel.text = FormatTime(currentTime - duration);
+            _remainingTimeLabel.text = Utils.FormatTime(currentTime - duration);
         }
 
         private void RefreshPlaybackPosition(float currentTime, float duration)
         {
             _positionSlider.SetValueWithoutNotify(Mathf.InverseLerp(0f, duration, currentTime));
-        }
-
-        private string FormatTime(float seconds)
-        {
-            if (-1f < seconds && seconds < 1f)
-            {
-                return "0:00";
-            }
-
-            var isNegative = seconds < 0;
-            seconds = Mathf.Abs(seconds);
-
-            var mins = (int)(seconds / 60);
-            var secs = (int)(seconds % 60);
-
-            var formatted = $"{mins}:{secs:D2}";
-            return isNegative ? $"-{formatted}" : formatted;
         }
 
         private void OnPlayActionPerformed()
