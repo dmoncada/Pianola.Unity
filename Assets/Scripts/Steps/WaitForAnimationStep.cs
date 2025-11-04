@@ -13,7 +13,7 @@ namespace Pianola
         private void Update()
         {
             var state = _animator.GetCurrentAnimatorStateInfo(0);
-            if (state.IsName(_targetStateName) && state.normalizedTime > 1f)
+            if (state.IsName(_targetStateName) && state.normalizedTime >= 1f)
             {
                 gameObject.SetActive(false);
             }

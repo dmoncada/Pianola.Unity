@@ -7,6 +7,8 @@ namespace Pianola
     {
         private readonly List<GameObject> _sequenceItems = new();
 
+        private readonly System.Diagnostics.Stopwatch _stopwatch = new();
+
         [SerializeField]
         private int _loopCount = 1;
 
@@ -49,7 +51,16 @@ namespace Pianola
         {
             if (0 <= _currentIndex && _currentIndex < _sequenceItems.Count)
             {
-                Debug.LogFormat("Deactivating: {0} ...", _sequenceItems[_currentIndex].name, this);
+                Debug.Assert(_stopwatch.IsRunning);
+
+                _stopwatch.Stop();
+
+                Debug.LogFormat(
+                    "Deactivating: {0}, time spent in step: {1}",
+                    _sequenceItems[_currentIndex].name,
+                    Utils.FormatTime(_stopwatch.Elapsed),
+                    this
+                );
 
                 _sequenceItems[_currentIndex].SetActive(false);
             }
@@ -64,7 +75,7 @@ namespace Pianola
                 {
                     gameObject.SetActive(false);
 
-                    return; // End of sequence
+                    return; // End of sequence.
                 }
             }
 
@@ -73,6 +84,8 @@ namespace Pianola
                 Debug.LogFormat("Activating: {0} ...", _sequenceItems[_currentIndex].name, this);
 
                 _sequenceItems[_currentIndex].SetActive(true);
+
+                _stopwatch.Restart();
             }
         }
     }

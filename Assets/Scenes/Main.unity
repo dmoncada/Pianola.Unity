@@ -1327,7 +1327,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5704118515295752468}
-  - component: {fileID: 3761502419313278153}
+  - component: {fileID: 5704118515295752469}
+  - component: {fileID: 5704118515295752470}
   m_Layer: 0
   m_Name: LoadMidiStep
   m_TagString: Untagged
@@ -1555,21 +1556,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3761502419313278153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2286746789180211006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a1880f63c5f846a38de327c3f199bef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayStep
-  _midiPlayer: {fileID: 596620425}
-  _midiFileAsset: {fileID: 4900000, guid: bc1681e998e5949639ce6897e37fb789, type: 3}
-  _playOnEnable: 0
 --- !u!114 &3769711969281192997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,6 +1843,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6358089014026501305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5704118515295752469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286746789180211006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3b7f25ffa1c4fefbbbfa52f4e78c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pianola::Pianola.LifecycleEvents
+  _onEnable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5704118515295752470}
+        m_TargetAssemblyTypeName: Pianola.LoadMidiStep, Pianola
+        m_MethodName: LoadMidi
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onDisable:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5704118515295752470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286746789180211006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1880f63c5f846a38de327c3f199bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pianola::Pianola.LoadMidiStep
+  _midiPlayer: {fileID: 596620425}
+  _midiFileAsset: {fileID: 4900000, guid: bc1681e998e5949639ce6897e37fb789, type: 3}
 --- !u!1 &6235313772320721024
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,7 +40,17 @@ namespace Pianola
             _hoveredElements.Clear();
             _panel.PickAll(position, _hoveredElements);
 
-            HoveredOverTarget = _hoveredElements.Any(e => _elementNames.Contains(e.name));
+            var hovered = false;
+            foreach (var element in _hoveredElements)
+            {
+                if (_elementNames.Contains(element.name))
+                {
+                    hovered = true;
+                    break;
+                }
+            }
+
+            HoveredOverTarget = hovered;
         }
     }
 }

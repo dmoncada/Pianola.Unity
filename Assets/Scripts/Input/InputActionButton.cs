@@ -14,7 +14,7 @@ namespace Pianola.Input
         public InputActionReference Action;
         public OnScreenButton Button;
 
-        private Button _uiToolkitButton;
+        private Button _uiToolkitButton = null;
         public Button UIToolkitButton
         {
             get => _uiToolkitButton;
@@ -28,7 +28,7 @@ namespace Pianola.Input
             }
         }
 
-        private Action _callback;
+        private Action _callback = null;
 
         public void Bind(Action callback)
         {
