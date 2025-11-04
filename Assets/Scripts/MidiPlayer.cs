@@ -178,7 +178,7 @@ namespace Pianola
         }
 
         #region Event Handlers
-        private void OnStartStop(object sender, EventArgs args)
+        private void OnStartStop(object _, EventArgs args)
         {
             var status = IsPlaying ? "started" : "stopped";
 
@@ -187,7 +187,7 @@ namespace Pianola
             _onPlayPause?.Invoke(IsPlaying);
         }
 
-        private void OnFinished(object sender, EventArgs args)
+        private void OnFinished(object _, EventArgs args)
         {
             _onPlayPause?.Invoke(false);
         }

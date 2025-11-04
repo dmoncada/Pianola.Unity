@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8983022}
-  - component: {fileID: 8983020}
+  - component: {fileID: 8983023}
   m_Layer: 0
   m_Name: OnScreenButton_Stop
   m_TagString: Untagged
@@ -136,19 +136,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8983020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2b41421dd6e4e03b0ef087d3804004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pianola::Pianola.CustomOnScreenButton
-  _controlPath: 
 --- !u!4 &8983022
 Transform:
   m_ObjectHideFlags: 0
@@ -164,6 +151,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 737427555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8983023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.OnScreen.OnScreenButton
+  m_ControlPath: 
 --- !u!1001 &33997159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,10 +557,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 630366369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2b41421dd6e4e03b0ef087d3804004, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Pianola::Pianola.CustomOnScreenButton
-  _controlPath: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.OnScreen.OnScreenButton
+  m_ControlPath: 
 --- !u!1 &650196973
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 650196976}
-  - component: {fileID: 650196974}
+  - component: {fileID: 650196977}
   m_Layer: 0
   m_Name: OnScreenButton_Forward
   m_TagString: Untagged
@@ -578,19 +578,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &650196974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650196973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2b41421dd6e4e03b0ef087d3804004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pianola::Pianola.CustomOnScreenButton
-  _controlPath: 
 --- !u!4 &650196976
 Transform:
   m_ObjectHideFlags: 0
@@ -606,6 +593,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 737427555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &650196977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650196973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.OnScreen.OnScreenButton
+  m_ControlPath: 
 --- !u!114 &697534942 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8070758790296646889, guid: bfe2bf2a9efca49a888ed23fcc229fa9, type: 3}
@@ -654,9 +654,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 630366370}
-  - {fileID: 8983022}
   - {fileID: 1863573817}
+  - {fileID: 8983022}
+  - {fileID: 630366370}
   - {fileID: 650196976}
   m_Father: {fileID: 523667310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -675,16 +675,16 @@ MonoBehaviour:
   _midiPlayer: {fileID: 596620425}
   _onScreenBackButton:
     Action: {fileID: 135364585151422552, guid: 9a82928af1f404192b6738b165ba369e, type: 3}
-    Button: {fileID: 1863573816}
+    Button: {fileID: 1863573818}
   _onScreenStopButton:
     Action: {fileID: -3613984689613330855, guid: 9a82928af1f404192b6738b165ba369e, type: 3}
-    Button: {fileID: 8983020}
+    Button: {fileID: 8983023}
   _onScreenPlayButton:
     Action: {fileID: 1783405744700941314, guid: 9a82928af1f404192b6738b165ba369e, type: 3}
     Button: {fileID: 630366371}
   _onScreenForwardButton:
     Action: {fileID: 1232957558665483093, guid: 9a82928af1f404192b6738b165ba369e, type: 3}
-    Button: {fileID: 650196974}
+    Button: {fileID: 650196977}
   _playImage: {fileID: 7388822144124034973, guid: 8ec2d9b4c76be446dafce558d0194cbe, type: 3}
   _pauseImage: {fileID: 7388822144124034973, guid: cab7d2af9562e4a8fbeb8fc6672848bc, type: 3}
   _refreshRate: 1
@@ -1072,7 +1072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1863573817}
-  - component: {fileID: 1863573816}
+  - component: {fileID: 1863573818}
   m_Layer: 0
   m_Name: OnScreenButton_Back
   m_TagString: Untagged
@@ -1080,19 +1080,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1863573816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863573815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2b41421dd6e4e03b0ef087d3804004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pianola::Pianola.CustomOnScreenButton
-  _controlPath: 
 --- !u!4 &1863573817
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,6 +1095,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 737427555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1863573818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863573815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.OnScreen.OnScreenButton
+  m_ControlPath: 
 --- !u!4 &245489878922817965
 Transform:
   m_ObjectHideFlags: 0
@@ -1153,19 +1153,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1906521408415591230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &498930034306980738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5334407901356203756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8d4504a8d0c46c28b71a21909f1ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pianola::Pianola.DelayStep
-  _delaySeconds: 1.6
 --- !u!4 &511072077783745062
 Transform:
   m_ObjectHideFlags: 0
@@ -1287,7 +1274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388231246722803885}
   - component: {fileID: 8723027020387479662}
-  - component: {fileID: 8486211595062779477}
+  - component: {fileID: 8723027020387479663}
   m_Layer: 0
   m_Name: OpenPiano
   m_TagString: Untagged
@@ -1756,7 +1743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4099235974053101948}
   - component: {fileID: 838748624240774643}
-  - component: {fileID: 498930034306980738}
+  - component: {fileID: 5334407901356203757}
   m_Layer: 0
   m_Name: ClosePiano
   m_TagString: Untagged
@@ -1764,6 +1751,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &5334407901356203757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334407901356203756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a8ecae7357d44b58dab7ec24ef86dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pianola::Pianola.AnimationWatcher
+  _animator: {fileID: 697534944}
+  _targetStateName: ClosePiano
 --- !u!114 &5388457565498417822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,19 +1857,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6358089014026501305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6122810687459858234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6474510370395104793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8d4504a8d0c46c28b71a21909f1ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Pianola::Pianola.DelayStep
-  _delaySeconds: 1.6
 --- !u!1 &6235313772320721024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4051092605258390898}
   - component: {fileID: 8036776960004684141}
-  - component: {fileID: 6122810687459858234}
+  - component: {fileID: 8036776960004684142}
   m_Layer: 0
   m_Name: OpenPiano
   m_TagString: Untagged
@@ -2079,19 +2067,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8486211595062779477
+--- !u!114 &8036776960004684142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948754978768537249}
+  m_GameObject: {fileID: 6474510370395104793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8d4504a8d0c46c28b71a21909f1ed3, type: 3}
+  m_Script: {fileID: 11500000, guid: 40a8ecae7357d44b58dab7ec24ef86dc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Pianola::Pianola.DelayStep
-  _delaySeconds: 1.6
+  m_EditorClassIdentifier: Pianola::Pianola.AnimationWatcher
+  _animator: {fileID: 697534944}
+  _targetStateName: OpenPiano
 --- !u!1 &8498408859495654684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2181,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8723027020387479663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948754978768537249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a8ecae7357d44b58dab7ec24ef86dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pianola::Pianola.AnimationWatcher
+  _animator: {fileID: 697534944}
+  _targetStateName: OpenPiano
 --- !u!114 &9127964351880323968
 MonoBehaviour:
   m_ObjectHideFlags: 0

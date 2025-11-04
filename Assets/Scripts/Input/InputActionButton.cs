@@ -1,5 +1,6 @@
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UIElements;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -11,11 +12,9 @@ namespace Pianola.Input
         private const TrickleDown UseTrickleDown = TrickleDown.TrickleDown;
 
         public InputActionReference Action;
-        public CustomOnScreenButton Button;
+        public OnScreenButton Button;
 
         private Button _uiToolkitButton;
-        private Action _callback;
-
         public Button UIToolkitButton
         {
             get => _uiToolkitButton;
@@ -29,6 +28,8 @@ namespace Pianola.Input
             }
         }
 
+        private Action _callback;
+
         public void Bind(Action callback)
         {
             if (_callback == null)
@@ -36,7 +37,7 @@ namespace Pianola.Input
                 _callback = callback;
                 Action.action.Enable();
                 Action.action.performed += OnActionPerformed;
-                BindInputActionToOnScreenButton(Action, Button);
+                Button.SetControlPath(GetFirstBindingPath(Action));
             }
         }
 
@@ -47,7 +48,7 @@ namespace Pianola.Input
                 _callback = null;
                 Action.action.Disable();
                 Action.action.performed -= OnActionPerformed;
-                Button.controlPath = string.Empty;
+                Button.SetControlPath(string.Empty);
             }
         }
 
@@ -76,30 +77,36 @@ namespace Pianola.Input
 
         private void Press(PointerDownEvent _)
         {
-            Button.Press();
+            Button.OnPointerDown(null);
         }
 
         private void Release(PointerUpEvent _)
         {
-            Button.Release();
+            Button.OnPointerUp(null);
         }
 
-        private void BindInputActionToOnScreenButton(
-            InputAction action,
-            CustomOnScreenButton button
-        )
+        private string GetFirstBindingPath(InputAction action)
         {
             foreach (var binding in action.bindings)
             {
                 var path = binding.effectivePath;
                 if (path.StartsWith("<Keyboard>"))
                 {
-                    button.controlPath = path;
-                    return;
+                    return path;
                 }
             }
 
             throw new Exception(); // TODO(dmoncada): add descriptive message.
+        }
+    }
+
+    public static class OnScreenControlExtensions
+    {
+        public static void SetControlPath(this OnScreenControl control, string controlPath)
+        {
+            control.enabled = false;
+            control.controlPath = controlPath;
+            control.enabled = true;
         }
     }
 }
