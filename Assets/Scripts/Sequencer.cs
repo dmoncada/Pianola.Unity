@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Pianola
     {
         private readonly List<GameObject> _sequenceItems = new();
 
-        private readonly System.Diagnostics.Stopwatch _stopwatch = new();
+        private float _startTime = 0f;
 
         [SerializeField]
         private int _loopCount = 1;
@@ -23,7 +24,7 @@ namespace Pianola
 
         private void Update()
         {
-            if (_currentIndex < 0 || _currentIndex >= _sequenceItems.Count)
+            if (_currentIndex.InRange(0, _sequenceItems.Count) == false)
             {
                 return;
             }
@@ -37,6 +38,7 @@ namespace Pianola
         private void Initialize()
         {
             _sequenceItems.Clear();
+            _startTime = Time.realtimeSinceStartup;
             _currentIndex = -1;
 
             for (int i = 0; i < transform.childCount; i++)
@@ -49,16 +51,14 @@ namespace Pianola
 
         public void Advance()
         {
-            if (0 <= _currentIndex && _currentIndex < _sequenceItems.Count)
+            if (_currentIndex.InRange(0, _sequenceItems.Count))
             {
-                Debug.Assert(_stopwatch.IsRunning);
-
-                _stopwatch.Stop();
+                var elapsed = Time.realtimeSinceStartup - _startTime;
 
                 Debug.LogFormat(
                     "Deactivating: {0}, time spent in step: {1}",
                     _sequenceItems[_currentIndex].name,
-                    Utils.FormatTime(_stopwatch.Elapsed),
+                    Utils.FormatTime(TimeSpan.FromSeconds(elapsed)),
                     this
                 );
 
@@ -85,7 +85,7 @@ namespace Pianola
 
                 _sequenceItems[_currentIndex].SetActive(true);
 
-                _stopwatch.Restart();
+                _startTime = Time.realtimeSinceStartup;
             }
         }
     }

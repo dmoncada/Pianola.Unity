@@ -18,9 +18,9 @@ END_TIME=$(date +%s)
 ELAPSED=$((END_TIME - START_TIME))
 
 if [ "$ELAPSED" -lt 60 ]; then
-    echo "Finish building in ${ELAPSED} seconds."
+    echo "Finished building in ${ELAPSED} seconds."
 else
     ELAPSED_MINS=$((ELAPSED / 60))
     ELAPSED_SECS=$((ELAPSED % 60))
-    echo "Finish building in ${ELAPSED_MINS} minutes, ${ELAPSED_SECS} seconds."
+    printf "Finished building in %d:%02d minutes." "$ELAPSED_MINS" "$ELAPSED_SECS"
 fi

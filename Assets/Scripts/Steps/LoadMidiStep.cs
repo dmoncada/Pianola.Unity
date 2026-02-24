@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -29,15 +28,15 @@ namespace Pianola
 
         public void LoadMidi()
         {
-            using (var _ = new TimedRegion(this))
+            using (new UnityTimedRegion(this))
             {
-                InitializeMidiPlayer(GetMidiBytesFromResources());
+                InitializeMidiPlayer(GetMidiBytesFromAsset(_midiFileAsset));
             }
         }
 
         public async void LoadMidiAsync()
         {
-            using (var _ = new TimedRegion(this))
+            using (new UnityTimedRegion(this))
             {
                 InitializeMidiPlayer(await GetMidiBytesAsync(Url));
             }
@@ -45,12 +44,9 @@ namespace Pianola
 
         private void InitializeMidiPlayer(byte[] midiBytes)
         {
-            Stream midiStream = null;
             try
             {
-                midiStream = new MemoryStream(midiBytes);
-
-                _midiPlayer.Initialize(midiStream);
+                _midiPlayer.Initialize(midiBytes);
 
                 // TODO(dmoncada): add error handling.
             }
@@ -58,20 +54,16 @@ namespace Pianola
             {
                 Debug.LogException(exception, this);
             }
-            finally
-            {
-                midiStream?.Dispose();
-            }
 
             _finishedLoading = true;
         }
 
-        private byte[] GetMidiBytesFromResources()
+        private byte[] GetMidiBytesFromAsset(TextAsset asset)
         {
             Debug.LogFormat(
                 "Loading text asset: {0}, size: {1}",
-                _midiFileAsset.name,
-                Utils.FormatBytes(_midiFileAsset.dataSize),
+                asset.name,
+                Utils.FormatBytes(asset.dataSize),
                 this
             );
 

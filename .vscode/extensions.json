@@ -1,6 +1,7 @@
 {
-    "recommendations": [
-      "csharpier.csharpier-vscode",
-      "visualstudiotoolsforunity.vstuc"
-    ],
+  "recommendations": [
+    "ms-dotnettools.csharp",
+    "csharpier.csharpier-vscode",
+    "visualstudiotoolsforunity.vstuc"
+  ]
 }

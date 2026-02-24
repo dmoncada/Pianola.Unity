@@ -75,6 +75,21 @@ namespace Pianola
         }
         #endregion Unity Lifecycle
 
+        public bool Initialize(byte[] midiBytes)
+        {
+            Stream midiStream = null;
+            try
+            {
+                midiStream = new MemoryStream(midiBytes);
+
+                return Initialize(midiStream);
+            }
+            finally
+            {
+                midiStream?.Dispose();
+            }
+        }
+
         public bool Initialize(Stream midiStream)
         {
             OnDestroy(); // Clean up playback (if any).
@@ -156,7 +171,10 @@ namespace Pianola
         {
             var settings = new PlaybackSettings
             {
-                ClockSettings = new MidiClockSettings { CreateTickGeneratorCallback = () => null },
+                ClockSettings = new MidiClockSettings
+                {
+                    CreateTickGeneratorCallback = static () => null,
+                },
             };
 
             var playback = midiFile.GetPlayback(settings);

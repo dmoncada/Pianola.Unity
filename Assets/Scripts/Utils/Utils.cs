@@ -1,8 +1,5 @@
 using System;
-using System.IO;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Pianola
 {
@@ -13,7 +10,7 @@ namespace Pianola
         public static string FormatBytes(long bytes)
         {
             var value = bytes;
-            var index = 0;
+            int index = 0;
 
             while (value >= 1024 && index < Sizes.Length - 1)
             {
@@ -61,44 +58,26 @@ namespace Pianola
             var isNegative = seconds < 0;
             seconds = Mathf.Abs(seconds);
 
-            var mins = seconds / 60;
-            var secs = seconds % 60;
+            int mins = seconds / 60;
+            int secs = seconds % 60;
 
             var formatted = $"{mins}:{secs:D2}";
             return isNegative ? $"-{formatted}" : formatted;
         }
+
+        public static bool InRange(this int number, int start, int end, bool inclusive = false)
+        {
+            return start <= number && number < end || (inclusive && number == end);
+        }
     }
 
-    public class TimedRegion : IDisposable
+    public static class Vector3Extensions
     {
-        private readonly Stopwatch _stopwatch = null;
-        private readonly UnityEngine.Object _context = null;
-        private readonly string _caller = null;
-
-        public TimedRegion(
-            UnityEngine.Object context = null,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string filePath = "",
-            [CallerLineNumber] int lineNumber = 0
-        )
+        public static void Deconstruct(this Vector3 v, out float x, out float y, out float z)
         {
-            _context = context;
-
-            _caller = $"{memberName} ({Path.GetFileName(filePath)}:{lineNumber})";
-
-            _stopwatch = Stopwatch.StartNew();
-        }
-
-        public void Dispose()
-        {
-            _stopwatch.Stop();
-
-            Debug.LogFormat(
-                "[{0}] Elapsed: {1}",
-                _caller,
-                Utils.FormatTime(_stopwatch.Elapsed),
-                _context
-            );
+            x = v.x;
+            y = v.y;
+            z = v.z;
         }
     }
 }
