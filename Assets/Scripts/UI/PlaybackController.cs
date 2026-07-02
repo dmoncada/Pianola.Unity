@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Pianola
 {
-    [RequireComponent(typeof(UIDocument))]
+    [RequireComponent(typeof(PanelRenderer))]
     public class PlaybackController : MonoBehaviour
     {
         private const TrickleDown UseTrickleDown = TrickleDown.TrickleDown;
@@ -48,8 +48,16 @@ namespace Pianola
 
         private void Awake()
         {
-            var root = GetComponent<UIDocument>().rootVisualElement;
+            GetComponent<PanelRenderer>().RegisterUIReloadCallback(OnUiReload);
+        }
 
+        private void OnDestroy()
+        {
+            GetComponent<PanelRenderer>().UnregisterUIReloadCallback(OnUiReload);
+        }
+
+        private void OnUiReload(PanelRenderer _, VisualElement root)
+        {
             _backButton = root.Q<Button>("Button_Back");
             _stopButton = root.Q<Button>("Button_Stop");
             _playButton = root.Q<Button>("Button_Play");
@@ -62,6 +70,8 @@ namespace Pianola
             _onScreenStopButton.UIToolkitButton = _stopButton;
             _onScreenPlayButton.UIToolkitButton = _playButton;
             _onScreenForwardButton.UIToolkitButton = _forwardButton;
+
+            enabled = true;
         }
 
         private void OnEnable()

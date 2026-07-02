@@ -29,8 +29,6 @@ namespace Pianola.Tests
 
             var key = keys[0];
 
-            // Playback state is meaningless in batch mode: there is no audio
-            // device, so AudioSource.isPlaying never becomes true.
             var audioEnabled = Application.isBatchMode == false;
 
             key.Press();

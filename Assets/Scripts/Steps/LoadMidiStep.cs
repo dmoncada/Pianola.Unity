@@ -34,7 +34,12 @@ namespace Pianola
             }
         }
 
-        public async void LoadMidiAsync()
+        public void LoadMidiFromUrl()
+        {
+            _ = LoadMidiAsync();
+        }
+
+        private async Awaitable LoadMidiAsync()
         {
             using (new UnityTimedRegion(this))
             {

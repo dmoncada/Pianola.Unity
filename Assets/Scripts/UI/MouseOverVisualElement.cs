@@ -11,7 +11,7 @@ namespace Pianola
         private readonly List<VisualElement> _hoveredElements = new();
 
         [SerializeField]
-        private UIDocument _document = null;
+        private PanelRenderer _renderer = null;
 
         [SerializeField]
         private string[] _targetElementNames = new string[0];
@@ -25,9 +25,21 @@ namespace Pianola
 
         private void Awake()
         {
+            _renderer.RegisterUIReloadCallback(OnUiReload);
+        }
+
+        private void OnDestroy()
+        {
+            _renderer.UnregisterUIReloadCallback(OnUiReload);
+        }
+
+        private void OnUiReload(PanelRenderer _, VisualElement root)
+        {
             _mouse = Mouse.current;
-            _panel = _document.rootVisualElement.panel;
+            _panel = root.panel;
             _elementNames = new(_targetElementNames);
+
+            enabled = true;
         }
 
         private void Update()
