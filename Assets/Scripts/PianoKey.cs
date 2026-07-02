@@ -108,7 +108,8 @@ namespace Pianola
             {
                 elapsed += Time.deltaTime;
                 source.volume = Mathf.Lerp(startVolume, 0f, elapsed / duration);
-                yield return new WaitForEndOfFrame();
+                // Not WaitForEndOfFrame: it never fires in batch mode, stalling the fade.
+                yield return null;
             }
 
             source.Stop();

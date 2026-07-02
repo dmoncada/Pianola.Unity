@@ -29,10 +29,18 @@ namespace Pianola.Tests
 
             var key = keys[0];
 
+            // Playback state is meaningless in batch mode: there is no audio
+            // device, so AudioSource.isPlaying never becomes true.
+            var audioEnabled = Application.isBatchMode == false;
+
             key.Press();
             yield return new WaitForSeconds(1f);
             Assert.That(key.ActiveSource, Is.Not.Null);
-            Assert.That(key.ActiveSource.isPlaying, Is.True);
+
+            if (audioEnabled)
+            {
+                Assert.That(key.ActiveSource.isPlaying, Is.True);
+            }
 
             var source = key.ActiveSource;
 
@@ -40,7 +48,11 @@ namespace Pianola.Tests
             // Wait for the sound to fade out.
             yield return new WaitForSeconds(1f);
             Assert.That(key.ActiveSource, Is.Null);
-            Assert.That(source.isPlaying, Is.False);
+
+            if (audioEnabled)
+            {
+                Assert.That(source.isPlaying, Is.False);
+            }
         }
     }
 }
